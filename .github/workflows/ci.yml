@@ -1,24 +1,20 @@
-name: CI
+name: Docker run tests
 
 on:
   push:
-    - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-    - main
+    branches: [ "main" ]
 
 jobs:
-  test:
+
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
-    - name: checkout code
-      uses: actions/checkout@v2
-    
-    - name: Set up Docker buildx
-      uses: docker/setup-buildx-action@v1
-
-    - name: Build and run tests
-      run: |
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      rrun: |
         docker-compose build angular-test
         docker-compose run --rm angular-test
