@@ -25,3 +25,22 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+# Docker
+
+### init any project
+```
+  FROM node:current-alpine3.20
+
+WORKDIR /app
+
+RUN npm install -g @angular/cli
+
+CMD ["ng", "new", "portfolio-frontend-yavirac", "--standalone","false"]
+
+```
+### Create the image
+```docker build -t angular-cli .```
+
+### run the container and create the project
+```docker run -it --rm -v ${PWD}:/app angular-cli```
