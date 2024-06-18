@@ -176,9 +176,11 @@ karma.config.js
     },
     singleRun: false
   });
-};```
+};
+```
 
-# How to run
+### How to run
+  
   ```
   docker-compose up --build angular-app
   docker-compose run --rm angular-test
