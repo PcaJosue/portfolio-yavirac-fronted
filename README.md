@@ -183,4 +183,5 @@ karma.config.js
   docker-compose up --build angular-app
   docker-compose run --rm angular-test
   docker-compose run --rm angular-cli ng generate component my-new-component
-  docker-compose up --build angular-prod```
+  docker-compose up --build angular-prod
+  ```
