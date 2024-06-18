@@ -43,7 +43,11 @@ CMD ["ng", "new", "portfolio-frontend-yavirac", "--standalone","false"]
 ```docker build -t angular-cli .```
 
 ### run the container and create the project
-```docker run -it --rm -v ${PWD}:/app angular-cli```
+
+```
+docker run -it --rm -v ${PWD}:/app angular-cli
+```
+
 ---
 
 ### Inside the project
@@ -131,8 +135,12 @@ docker-compose.yml
 ```
 
 # To execute the test
-```docker-compose run --rm angular-cli ng generate config karma```
+```
+docker-compose run --rm angular-cli ng generate config karma
+```
+
 karma.config.js
+
 ```module.exports = function (config) {
   config.set({
     basePath: '',
