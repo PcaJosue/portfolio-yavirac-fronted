@@ -28,13 +28,17 @@ WORKDIR /app
   FROM node:current-alpine3.20 AS build
 
   WORKDIR /app
-
   RUN npm install -g @angular/cli
-
   COPY package*.json ./
-
   RUN npm install
-
   COPY . .
-
   RUN ng build
+
+  #stage 3
+  FROM nginx:alpine AS production
+
+  COPY --from=build /app/dist/portfolio-yavirac-frontend /usr/share/nginx/html
+  COPY nginx.conf /etc/nginx/nginx.conf
+
+  EXPOSE 80
+  CMD ["nginx", "-g", "daemon off;"]
