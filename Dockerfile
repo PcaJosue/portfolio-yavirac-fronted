@@ -24,17 +24,3 @@ WORKDIR /app
 
   CMD ["ng", "serve", "--host", "0.0.0.0", "--poll", "2000"]
 
-
-  FROM node:current-alpine3.20 AS build
-
-  WORKDIR /app
-
-  RUN npm install -g @angular/cli
-
-  COPY package*.json ./
-
-  RUN npm install
-
-  COPY . .
-
-  RUN ng build
