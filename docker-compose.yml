@@ -26,9 +26,3 @@
         - .:/app
         - /app/node_modules
       entrypoint: ["/bin/sh", "-c", "while true; do sleep 1000; done"]
-    angular-prod:
-      build:
-        context: .
-        target: build
-      ports:
-        - "80:80"
