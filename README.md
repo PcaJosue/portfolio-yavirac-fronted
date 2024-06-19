@@ -187,3 +187,32 @@ karma.config.js
   docker-compose run --rm angular-cli ng generate component my-new-component
   docker-compose up --build angular-prod
   ```
+
+---
+
+### Continuos integration
+
+create .github/workflows/ci.yml
+
+```
+name: Docker run tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: |
+        docker-compose build angular-test
+        docker-compose run --rm angular-test
+```
