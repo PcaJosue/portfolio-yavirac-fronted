@@ -4,6 +4,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CatalogosComponent } from './componentes/catalogos/catalogos.component';
+import { MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+
 
 
 @NgModule({
@@ -13,7 +16,9 @@ import { CatalogosComponent } from './componentes/catalogos/catalogos.component'
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatPaginatorModule,
+    MatTableModule,
   ],
   providers: [
     provideAnimationsAsync(),
