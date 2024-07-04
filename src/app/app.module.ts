@@ -4,8 +4,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CatalogosComponent } from './componentes/catalogos/catalogos.component';
-import { MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -17,9 +18,11 @@ import {MatTableModule} from '@angular/material/table';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatPaginatorModule,
     MatTableModule,
+    MatButtonModule,
+    MatIconModule
   ],
+  
   providers: [
     provideAnimationsAsync(),
     provideAnimationsAsync('noop')
