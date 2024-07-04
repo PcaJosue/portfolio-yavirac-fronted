@@ -7,6 +7,9 @@ import { CatalogosComponent } from './componentes/catalogos/catalogos.component'
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; 
+
 
 
 
@@ -20,7 +23,9 @@ import { MatIconModule } from '@angular/material/icon';
     AppRoutingModule,
     MatTableModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    CommonModule,
+    FormsModule
   ],
   
   providers: [

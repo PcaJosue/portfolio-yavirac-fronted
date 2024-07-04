@@ -1,37 +1,36 @@
-<!-- Botón para agregar nuevo catálogo -->
-<button mat-raised-button color="primary" (click)="addCatalog()">Agregar Catálogo</button>
+<div>
+  <h2>Lista de Catálogos</h2>
+  
+  <button (click)="agregarCatalogo()">Agregar Catálogo</button>
 
-<!-- Tabla de catálogos -->
-<table mat-table>
-  <!-- Columnas de la tabla -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let catalog">{{ catalog.id }}</td>
-  </ng-container>
+  <label for="search">Buscar:</label>
+  <input type="text" id="search" [(ngModel)]="filtro" (input)="buscarCatalogos()">
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Nombre</th>
-    <td mat-cell *matCellDef="let catalog">{{ catalog.name }}</td>
-  </ng-container>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let catalogo of catalogos | slice:(paginaActual-1)*3:paginaActual*3">
+        <td>{{ catalogo.id }}</td>
+        <td>{{ catalogo.nombre }}</td>
+        <td>{{ catalogo.descripcion }}</td>
+        <td>
+          <button (click)="editarCatalogo(catalogo)">Editar</button>
+          <button (click)="eliminarCatalogo(catalogo.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-  <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef>Precio</th>
-    <td mat-cell *matCellDef="let catalog">{{ catalog.price }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>Acciones</th>
-    <td mat-cell *matCellDef="let catalog">
-      <!-- Botones de acción para editar y eliminar -->
-      <button mat-icon-button color="primary" (click)="editCatalog(catalog)">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" (click)="deleteCatalog(catalog.id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+  <div class="pagination">
+    <button [disabled]="paginaActual === 1" (click)="cambiarPagina(paginaActual - 1)">Anterior</button>
+    <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
+    <button [disabled]="paginaActual === totalPaginas" (click)="cambiarPagina(paginaActual + 1)">Siguiente</button>
+  </div>
+</div>

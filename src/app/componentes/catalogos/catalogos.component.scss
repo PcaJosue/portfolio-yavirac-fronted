@@ -1,0 +1,97 @@
+  
+// Estilos para el título
+    h2 {
+        text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+  
+    // Estilos para el botón Agregar Catálogo
+    button {
+      padding: 8px 16px;
+      background-color: #f54b0d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 10px;
+  
+      &:hover {
+        background-color: hsl(0, 74%, 15%);
+      }
+    }
+  
+    // Estilos para el campo de búsqueda
+    label {
+      margin-right: 10px;
+    }
+  
+    input[type="text"] {
+      padding: 8px;
+      font-size: 14px;
+    }
+  
+    // Estilos para la tabla
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+  
+      th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+  
+      th {
+        background-color: #f2f2f2;
+        color: #333;
+      }
+  
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+  
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+  
+      // Estilos para las acciones de editar y eliminar
+      .acciones {
+        button {
+          padding: 6px 10px;
+          margin-right: 5px;
+          cursor: pointer;
+          background-color: #28a745;
+          color: white;
+          border: none;
+  
+          &:hover {
+            background-color: #218838;
+          }
+        }
+      }
+    }
+  
+    // Estilos para la paginación
+    .pagination {
+      margin-top: 10px;
+  
+      button {
+        padding: 6px 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+  
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+  
+        &:hover:not(:disabled) {
+          background-color: #0c00b3a9;
+        }
+      }
+    }
+  
+  
