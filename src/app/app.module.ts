@@ -5,9 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { CatalogoValorComponent } from './componentes/catalogo-valor/catalogo-valor.component';
+import {MatTableModule} from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -17,9 +20,11 @@ import { CatalogoValorComponent } from './componentes/catalogo-valor/catalogo-va
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatTableModule,
+    MatButtonModule,
     MatIconModule,
-    MatDividerModule,
-    MatButtonModule
+    CommonModule,
+    FormsModule
   ],
   providers: [
     provideAnimationsAsync(),
