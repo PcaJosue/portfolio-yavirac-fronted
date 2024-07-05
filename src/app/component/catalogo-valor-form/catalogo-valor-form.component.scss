@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+h2 {
+    color: #333;
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: left;
+    padding: 50px;
+}
+
+
+
+.crear-editar {
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+mat-form-field {
+    flex: 1;
+}
+
+button {
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    
+}
+
+.botones {
+    padding: 50px;
+    text-align: right;
+}
+
+button:first-of-type {
+
+    max-width: 600px;
+    margin: 8px 8px 8px 0;
+    
+}
+
+button:last-of-type {
+    max-width: 600px;
+    margin: 8px 8px 8px 0;
+}
