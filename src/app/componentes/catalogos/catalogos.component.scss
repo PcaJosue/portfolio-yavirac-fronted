@@ -1,41 +1,34 @@
-
-.mat-card {
-  margin: 20px;
-  width: 80%;
-  max-width: 800px;
-}
-
-.mat-card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.mat-form-field {
-  margin-bottom: 15px;
-  width: 100%;
-}
-
-.mat-table {
-  width: 100%;
-  overflow: auto;
-}
-
-.mat-header-cell, .mat-cell {
-  padding: 10px;
-  text-align: left;
-}
-
-.mat-row:hover {
-  background-color: #f0f0f0;
-}
-
-.mat-paginator {
+.container {
+  display: flex;
   justify-content: center;
-  margin-top: 15px;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+
+mat-card {
+  width: 300%;
+  max-width: 3000px; /* Ajusta el ancho máximo del mat-card según tus necesidades */
+  margin-bottom: 60px; /* Espacio adicional entre el mat-card y otros elementos si es necesario */
+}
+
+mat-table {
+  width: 400%;
+  max-width: 200%; /* La tabla ocupa el 100% del contenedor */
+  overflow: auto; /* Agrega scroll horizontal si es necesario */
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px; /* Espacio superior entre las acciones y el contenido de la tarjeta */
+}
+
+mat-form-field {
+  margin-right: 15px;
+  width: 300px; /* Ajusta el ancho de los campos de formulario según tus necesidades */
 }
 
 button.mat-raised-button {
-  margin-bottom: 15px;
+  margin-right: 10px;
 }
-
-  
