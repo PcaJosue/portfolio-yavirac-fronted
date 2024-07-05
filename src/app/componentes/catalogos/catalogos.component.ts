@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+// catalogos.component.ts
 
-interface Catalogo {
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+
+export interface Elemento {
   id: number;
   nombre: string;
-  descripcion: string;
+  // otras propiedades si las hay
 }
 
 @Component({
@@ -11,74 +16,44 @@ interface Catalogo {
   templateUrl: './catalogos.component.html',
   styleUrls: ['./catalogos.component.scss']
 })
-export class CatalogosComponent implements OnInit {
-  catalogos: Catalogo[] = [
-    { id: 1, nombre: 'Catálogo 1', descripcion: 'Descripción del Catálogo 1' },
-    { id: 2, nombre: 'Catálogo 2', descripcion: 'Descripción del Catálogo 2' },
-    { id: 3, nombre: 'Catálogo 3', descripcion: 'Descripción del Catálogo 3' },
-    { id: 4, nombre: 'Catálogo 4', descripcion: 'Descripción del Catálogo 4' },
-    { id: 5, nombre: 'Catálogo 5', descripcion: 'Descripción del Catálogo 5' }
+export class CatalogosComponent implements AfterViewInit {
+  dataSource: MatTableDataSource<Elemento>;
+  displayedColumns: string[] = ['id', 'nombre', 'acciones'];
+
+  // Ejemplo de datos (simulados o de un servicio)
+  elementos: Elemento[] = [
+    { id: 1, nombre: 'Elemento 1' },
+    { id: 2, nombre: 'Elemento 2' },
+    { id: 3, nombre: 'Elemento 3' },
+    // más elementos
   ];
-  paginaActual: number = 1;
-  totalPaginas: number = 1;
-  filtro: string = '';
 
-  constructor() {}
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit(): void {
-    this.calcularTotalPaginas();
+  constructor() {
+    this.dataSource = new MatTableDataSource(this.elementos);
   }
 
-  calcularTotalPaginas() {
-    this.totalPaginas = Math.ceil(this.catalogos.length / 3); // Suponiendo que hay 3 elementos por página inicialmente
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  cambiarPagina(pagina: number) {
-    if (pagina >= 1 && pagina <= this.totalPaginas) {
-      this.paginaActual = pagina;
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
   }
 
-  buscarCatalogos() {
-    // Implementación básica de búsqueda por nombre y descripción
-    const filtroMinusculas = this.filtro.toLowerCase();
-    this.catalogos = [
-      { id: 1, nombre: 'Catálogo 1', descripcion: 'Descripción del Catálogo 1' },
-      { id: 2, nombre: 'Catálogo 2', descripcion: 'Descripción del Catálogo 2' },
-      { id: 3, nombre: 'Catálogo 3', descripcion: 'Descripción del Catálogo 3' },
-      { id: 4, nombre: 'Catálogo 4', descripcion: 'Descripción del Catálogo 4' },
-      { id: 5, nombre: 'Catálogo 5', descripcion: 'Descripción del Catálogo 5' }
-    ].filter(catalogo =>
-      catalogo.nombre.toLowerCase().includes(filtroMinusculas) ||
-      catalogo.descripcion.toLowerCase().includes(filtroMinusculas)
-    );
-    this.calcularTotalPaginas(); // Recalculamos el total de páginas después de aplicar el filtro
-    this.paginaActual = 1; // Resetamos a la primera página al buscar
+  editar(elemento: Elemento) {
+    // Lógica para editar un elemento
   }
 
-  editarCatalogo(catalogo: Catalogo) {
-    console.log('Editar:', catalogo);
-    // Implementar lógica de edición aquí
-  }
-
-  eliminarCatalogo(id: number) {
-    console.log('Eliminar ID:', id);
-    // Implementar lógica de eliminación aquí
-    // Por ejemplo, eliminar el catálogo del array this.catalogos
-    this.catalogos = this.catalogos.filter(catalogo => catalogo.id !== id);
-    this.calcularTotalPaginas(); // Recalculamos el total de páginas después de eliminar
-  }
-
-  agregarCatalogo() {
-    // Implementar lógica para agregar un nuevo catálogo
-    const nuevoCatalogo: Catalogo = {
-      id: this.catalogos.length + 1, // Generar un nuevo ID basado en el tamaño actual del array
-      nombre: 'Nuevo Catálogo',
-      descripcion: 'Descripción del Nuevo Catálogo'
-    };
-
-    this.catalogos.push(nuevoCatalogo);
-    this.calcularTotalPaginas(); // Recalculamos el total de páginas después de agregar
-    this.paginaActual = Math.ceil(this.catalogos.length / 3); // Mover la página actual a la última página después de agregar
+  eliminar(elemento: Elemento) {
+    // Lógica para eliminar un elemento
   }
 }
