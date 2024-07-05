@@ -13,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsComponent } from './forms/forms.component';
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 
 
@@ -21,7 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
-    CatalogosComponent
+    CatalogosComponent,
+    FormsComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     CommonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule
   ],
   
   providers: [
