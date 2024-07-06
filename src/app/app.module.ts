@@ -13,18 +13,17 @@ import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsComponent } from './forms/forms.component';
-import { ReactiveFormsModule } from '@angular/forms'; 
-
-
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { AgregarComponent } from './componentes/agregar/agregar.component';
+import { EditarComponent } from './componentes/editar/editar.component'; 
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CatalogosComponent,
-    FormsComponent
+    AgregarComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,
@@ -38,12 +37,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     MatCardModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   
   providers: [
     provideAnimationsAsync(),
-    provideAnimationsAsync('noop')
+    provideAnimationsAsync('noop'),
+  
   ],
   bootstrap: [AppComponent]
 })

@@ -1,34 +1,59 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  padding: 20px;
-}
 
-mat-card {
-  width: 300%;
-  max-width: 3000px; /* Ajusta el ancho máximo del mat-card según tus necesidades */
-  margin-bottom: 60px; /* Espacio adicional entre el mat-card y otros elementos si es necesario */
-}
-
-mat-table {
-  width: 400%;
-  max-width: 200%; /* La tabla ocupa el 100% del contenedor */
-  overflow: auto; /* Agrega scroll horizontal si es necesario */
-}
-
-mat-card-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px; /* Espacio superior entre las acciones y el contenido de la tarjeta */
-}
-
-mat-form-field {
-  margin-right: 15px;
-  width: 300px; /* Ajusta el ancho de los campos de formulario según tus necesidades */
-}
-
-button.mat-raised-button {
-  margin-right: 10px;
-}
+  .mat-card {
+    width: 100%;
+    max-width: 3000px; /* Ancho máximo de la tarjeta */
+    height: 100%; /* Ocupa toda la altura disponible */
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mat-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    max-width: 400px; /* Ancho máximo del campo de búsqueda */
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+  }
+  
+  th.mat-header-cell,
+  td.mat-cell {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .mat-header-row {
+    background-color: #f0f0f0;
+  }
+  
+  .mat-row {
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .mat-row:hover {
+    background-color: #f5f5f5;
+  }
+  
+  button.mat-icon-button {
+    margin-left: 8px;
+    color: #666;
+  }
+  
+  .mat-paginator {
+    margin-top: 20px;
+    justify-content: center;
+  }
+  
