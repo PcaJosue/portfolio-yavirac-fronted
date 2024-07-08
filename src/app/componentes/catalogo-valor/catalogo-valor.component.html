@@ -1,45 +1,17 @@
-<mat-drawer-container class="example-container">
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-   <div class="list-buttons">
-    <ul>
-      <li><a routerLink="Estudiantes">Estudiantes</a></li>
-      <li><a routerLink="Catalogos">Catalogos</a></li>
-      <li><a routerLink="Cat.Valor">Cat.Valor</a></li>
-    </ul>
 
-   </div>
-   
-
-  </mat-drawer>
-
-  <div class="example-sidenav-content">
-
-    <div class="main-header">
-      <mat-toolbar>
-        <span>My Application</span>
-        <button type="button" mat-button (click)="drawer.toggle()">
-          Toggle sidenav
-        </button>
-      </mat-toolbar>
-
-    </div>
-
-    <div class="main-body">
-      <router-outlet></router-outlet>
-    </div>
 
     <div class="catalogo-valor-container">
 
       <div class="valor-header">
+        <div class="h">
         <mat-form-field appearance="outline">
           <mat-label>Search</mat-label>
-          <input (input)="filterCatalogoValor()"  [(ngModel)]="searchInput" valor="searchInput" matInput placeholder="Search.....">
+          <input (input)="filterCatalogoValor()"  [(ngModel)]="searchInput" id="searchInput" matInput placeholder="Search.....">
         </mat-form-field>
-
-
-        <button mat-stroked-button (click)="goToCatalogoValorForm()"  >Create</button>
-
-      
+        </div>
+        <div class="d">
+        <button mat-stroked-button (click)="goToCatalogoValorForm()">Create</button>
+        </div>
       </div>
       <div class="valor-table">
         <div class="mat-elevation-z8">
@@ -96,9 +68,4 @@
       </div>
     </div>
 
-
-    
-  </div>
-
-</mat-drawer-container>
 

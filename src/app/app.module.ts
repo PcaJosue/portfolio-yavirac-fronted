@@ -11,11 +11,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableModule} from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
-import { CatalogoValorFormComponent } from './component/catalogo-valor-form/catalogo-valor-form.component';
+import { CatalogoValorFormComponent } from './componentes/catalogo-valor-form/catalogo-valor-form.component';
 
 
 
@@ -38,7 +39,8 @@ import { CatalogoValorFormComponent } from './component/catalogo-valor-form/cata
     MatInputModule,
     MatPaginatorModule,
     MatTableModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule
   ],
   providers: [
     provideAnimationsAsync(),

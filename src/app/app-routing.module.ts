@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CatalogoValorComponent } from './componentes/catalogo-valor/catalogo-valor.component';
-import { CatalogoValorFormComponent } from './component/catalogo-valor-form/catalogo-valor-form.component';
+import { CatalogoValorFormComponent } from './componentes/catalogo-valor-form/catalogo-valor-form.component';
 
 const routes: Routes = [
   {path:"catalogo-valor",component:CatalogoValorComponent},
