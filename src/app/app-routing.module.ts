@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CatalogosComponent } from './componentes/catalogos/catalogos.component';
-import { AgregarComponent } from './componentes/agregar/agregar.component';
-import { EditarComponent } from './componentes/editar/editar.component';
+import { CatalogosFormComponent } from './componentes/catalogos-form/catalogos-form.component';
+import { ConfirmacionComponent } from './componentes/confirmacion/confirmacion.component';
 
 const routes: Routes = [
   {path:'catalogos', component:CatalogosComponent},
-  {path:'agregar', component:AgregarComponent},
-  {path:'editar', component:EditarComponent}
+  {path:'catalogosform', component:CatalogosFormComponent},
+  {path:'confirmacion', component:ConfirmacionComponent}
   
 ];
 
@@ -16,3 +16,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+export class ConfirmacionModule { }

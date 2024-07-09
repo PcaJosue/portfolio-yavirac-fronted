@@ -2,20 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-editar',
-  templateUrl: './editar.component.html',
-  styleUrls: ['./editar.component.scss']
+  selector: 'app-catalogos-form',
+  templateUrl: './catalogos-form.component.html',
+  styleUrls: ['./catalogos-form.component.scss']
 })
-export class EditarComponent implements OnInit {
+export class CatalogosFormComponent implements OnInit {
   id: number; // Id del elemento a editar
-  nombre: string;
+  valor: string;
+  alias: string;
   descripcion: string;
-  precio: number;
+  catalogo: string;
 
   dataSource: any[] = [
-    { id: 1, nombre: 'Elemento 1', descripcion: 'Descripción 1', precio: 100 },
-    { id: 2, nombre: 'Elemento 2', descripcion: 'Descripción 2', precio: 200 },
-    { id: 3, nombre: 'Elemento 3', descripcion: 'Descripción 3', precio: 300 }
+    {id: '1', valor: 'Primer', alias: '1er', descripcion: 'semestre inicial',catalogo:'semestres'},
+    {id: '2', valor: 'Segundo', alias: '2do', descripcion: 'segundo semestre', catalogo:'semestres'},
+    {id: '3', valor: 'A +', alias: 'A positivo', descripcion: 'tipo de sangre A+',catalogo:'tipo de sangre'}
   ]; // Estructura de datos local para almacenar los elementos
 
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -26,11 +27,13 @@ export class EditarComponent implements OnInit {
       this.id = +params['id']; // Convertir a número
       if (this.id) {
         // Si hay un id, buscar el elemento en el dataSource y cargar sus datos
-        const elemento = this.dataSource.find(e => e.id === this.id);
-        if (elemento) {
-          this.nombre = elemento.nombre;
-          this.descripcion = elemento.descripcion;
-          this.precio = elemento.precio;
+        const id = this.dataSource.find(e => e.id === this.id);
+        if (id) {
+          this.id = id.id;
+          this.valor = id.valor;
+          this.alias = id.alias;
+          this.descripcion =id.descripcion;
+          this.catalogo = id.catalogo;
         }
       }
     });
@@ -40,9 +43,10 @@ export class EditarComponent implements OnInit {
     // Aquí puedes guardar los datos editados en la estructura de datos local
     const elementoEditado = {
       id: this.id,
-      nombre: this.nombre,
+      valor: this.valor,
+      Alias: this.alias,
       descripcion: this.descripcion,
-      precio: this.precio
+      catalogo: this.catalogo
     };
 
     // Reemplazar el elemento editado en el dataSource
@@ -57,6 +61,10 @@ export class EditarComponent implements OnInit {
 
   cancelar() {
     // Implementa la lógica para cancelar la operación (por ejemplo, redirigir a la pantalla de catálogos)
+    this.router.navigate(['/catalogos']);
+  }
+
+  goBack() {
     this.router.navigate(['/catalogos']);
   }
 }

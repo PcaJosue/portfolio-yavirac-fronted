@@ -14,16 +14,16 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AgregarComponent } from './componentes/agregar/agregar.component';
-import { EditarComponent } from './componentes/editar/editar.component'; 
-
+import { CatalogosFormComponent } from './componentes/catalogos-form/catalogos-form.component';
+import { ConfirmacionComponent } from './componentes/confirmacion/confirmacion.component'; 
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     CatalogosComponent,
-    AgregarComponent,
-    EditarComponent
+    CatalogosFormComponent,
+    ConfirmacionComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +38,7 @@ import { EditarComponent } from './componentes/editar/editar.component';
     MatCardModule,
     MatIconModule,
     ReactiveFormsModule,
+    MatDialogModule 
   ],
   
   providers: [
@@ -48,3 +49,4 @@ import { EditarComponent } from './componentes/editar/editar.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+export class ConfirmacionModule {}

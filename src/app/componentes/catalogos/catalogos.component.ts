@@ -1,54 +1,59 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
-import { AgregarComponent } from '../agregar/agregar.component';
-import { EditarComponent } from '../editar/editar.component';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-catalogos',
   templateUrl: './catalogos.component.html',
   styleUrls: ['./catalogos.component.scss']
 })
-export class CatalogosComponent {
-  dataSource = new MatTableDataSource<any>([
-    { id: 1, nombre: 'Elemento 1', descripcion: 'Descripción 1', precio: 100 },
-    { id: 2, nombre: 'Elemento 2', descripcion: 'Descripción 2', precio: 200 },
-    { id: 3, nombre: 'Elemento 3', descripcion: 'Descripción 3', precio: 300 },
-    // Aquí puedes inicializar tu dataSource con datos iniciales
-  ]);
-  displayedColumns: string[] = ['id', 'nombre', 'descripcion', 'precio', 'acciones'];
+export class CatalogosComponent  implements AfterViewInit {
+  displayedColumns: string[] = ['id', 'valor', 'alias', 'descripcion','catalogo','action'];
+  dataSource = new MatTableDataSource<Valor>(valores);
 
-  @ViewChild(AgregarComponent) agregarComponent: AgregarComponent;
-  @ViewChild(EditarComponent) editarComponent: EditarComponent;
+  searchInput: string='';
 
-  constructor(private router: Router) {}
-
-  agregarNuevo() {
-    this.router.navigate(['/agregar']); // Navega a la página de agregar/editar
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
-  editar(element: any) {
-    this.router.navigate(['/editar', { id: element.id }]); // Navega a la página de agregar/editar con el ID del elemento
-  }
+  constructor(private router:Router ,
+    
+  ){}
 
-  eliminar(elemento: any) {
-    const index = this.dataSource.data.findIndex(e => e.id === elemento.id);
-    if (index >= 0) {
-      this.dataSource.data.splice(index, 1);
-      this.refreshDataSource();
+  filterCatalogoValor(){
+    if(!this.searchInput || this.searchInput.length === 0){
+      this.dataSource = new MatTableDataSource<Valor>(valores);
+      return;
     }
+    const filterCatalogoValor = valores.filter( valor => valor.id.toLowerCase().includes(this.searchInput.toLowerCase()));
+    this.dataSource = new MatTableDataSource<Valor>(filterCatalogoValor);
+
+  }
+  goToCatalogoValorForm(){
+    this.router.navigate(['/catalogos-form'])
+
   }
 
-  refreshDataSource() {
-    this.dataSource = new MatTableDataSource<any>(this.dataSource.data);
+  editCatalogoValor(valores:Valor){
+    console.log(valores)
+    this.router.navigate(['/edit-catalogo-valor',valores.id])
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
 }
+
+export interface Valor {
+  id: string;
+  valor: string;
+  alias: string;
+  descripcion: string;
+  catalogo: string;
+}
+
+const valores: Valor[] = [
+  {id: '1', valor: 'Primer', alias: '1er', descripcion: 'semestre inicial',catalogo:'semestres'},
+  {id: '2', valor: 'Segundo', alias: '2do', descripcion: 'segundo semestre', catalogo:'semestres'},
+  {id: '3', valor: 'A +', alias: 'A positivo', descripcion: 'tipo de sangre A+',catalogo:'tipo de sangre'},
+];
