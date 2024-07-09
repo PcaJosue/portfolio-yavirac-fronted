@@ -16,9 +16,10 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableModule} from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
+
 import { CatalogoValorFormComponent } from './componentes/catalogo-valor-form/catalogo-valor-form.component';
-
-
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -40,7 +41,9 @@ import { CatalogoValorFormComponent } from './componentes/catalogo-valor-form/ca
     MatPaginatorModule,
     MatTableModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideAnimationsAsync(),

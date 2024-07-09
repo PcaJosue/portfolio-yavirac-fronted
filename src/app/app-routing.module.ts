@@ -6,7 +6,7 @@ import { CatalogoValorFormComponent } from './componentes/catalogo-valor-form/ca
 const routes: Routes = [
   {path:"catalogo-valor",component:CatalogoValorComponent},
   {path:"catalogo-valor-form",component:CatalogoValorFormComponent},
-  {path:"edit-catalogo-valor/:valor",component:CatalogoValorFormComponent},
+  {path:"edit-catalogo-valor/:id",component:CatalogoValorFormComponent},
   
 
   { path: '',   redirectTo: '/catalogo-valor', pathMatch: 'full' }

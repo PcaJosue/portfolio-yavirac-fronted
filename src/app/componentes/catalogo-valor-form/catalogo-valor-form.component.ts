@@ -1,25 +1,60 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 
 @Component({
   selector: 'app-catalogo-valor-form',
   templateUrl: './catalogo-valor-form.component.html',
-  styleUrl: './catalogo-valor-form.component.scss'
+  styleUrls: ['./catalogo-valor-form.component.scss']
 })
-export class CatalogoValorFormComponent {
-  valor: string = '';
+export class CatalogoValorFormComponent implements OnInit{
+  catalogoForm: FormGroup;
+  mode: 'edit' | 'create';
+  id: string;
   
-  constructor(private router:Router ,
-    private route: ActivatedRoute,
+  constructor( 
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
   ){
     
-    this.valor = this.route.snapshot.paramMap.get('valor')
-   
-
+    this.catalogoForm = this.fb.group({
+      id: [''], // puedes agregar validadores aquí si es necesario
+      valor: ['', Validators.required],
+      alias: [''],
+      catalogo: ['', Validators.required],
+      descripcion: ['']
+    });
   }
+
+  ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.mode = this.id ? 'edit' : 'create';
+
+    if (this.mode === 'edit') {
+      // Aquí puedes cargar los datos del objeto a editar, si es necesario
+      // Por ejemplo, haciendo una llamada al servicio para obtener los datos del ID
+      // this.loadCatalogoValor(this.id);
+    }
+  }
+
+  guardar(): void {
+    if (this.catalogoForm.valid) {
+      const formData = this.catalogoForm.value;
+      // Aquí puedes guardar los datos usando un servicio
+      // this.catalogoService.guardarCatalogo(formData).subscribe(...);
+      this.goBack();
+    } else {
+      // Maneja la lógica para mostrar errores o mensajes al usuario
+    }
+  }
+
+  
   goBack(){
     this.router.navigate(['catalogo-valor'])
   }
 
 }
+
