@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { valores } from '../catalogo-valor/catalogo-valor.component';
 
 
 
@@ -34,9 +35,12 @@ export class CatalogoValorFormComponent implements OnInit{
     this.mode = this.id ? 'edit' : 'create';
 
     if (this.mode === 'edit') {
+      const catalogoValor=valores.filter(valor=>valor.id===+this.id)[0]
       // Aquí puedes cargar los datos del objeto a editar, si es necesario
       // Por ejemplo, haciendo una llamada al servicio para obtener los datos del ID
       // this.loadCatalogoValor(this.id);
+      console.log(catalogoValor)
+      this.catalogoForm.patchValue({...catalogoValor})
     }
   }
 

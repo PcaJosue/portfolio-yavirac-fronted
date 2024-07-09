@@ -62,7 +62,7 @@ export interface Valor {
   catalogo: string;
 }
 
-const valores: Valor[] = [
+export const valores: Valor[] = [
   {id: 1, valor: 'Primer', alias: '1er', descripcion: 'semestre inicial',catalogo:'semestres'},
   {id: 2, valor: 'Segundo', alias: '2do', descripcion: 'segundo semestre', catalogo:'semestres'},
   {id: 3, valor: 'A +', alias: 'A positivo', descripcion: 'tipo de sangre A+',catalogo:'tipo de sangre'},
