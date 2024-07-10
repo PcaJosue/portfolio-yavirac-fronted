@@ -36,9 +36,6 @@ export class CatalogoValorFormComponent implements OnInit{
 
     if (this.mode === 'edit') {
       const catalogoValor=valores.filter(valor=>valor.id===+this.id)[0]
-      // Aquí puedes cargar los datos del objeto a editar, si es necesario
-      // Por ejemplo, haciendo una llamada al servicio para obtener los datos del ID
-      // this.loadCatalogoValor(this.id);
       console.log(catalogoValor)
       this.catalogoForm.patchValue({...catalogoValor})
     }
@@ -47,11 +44,8 @@ export class CatalogoValorFormComponent implements OnInit{
   guardar(): void {
     if (this.catalogoForm.valid) {
       const formData = this.catalogoForm.value;
-      // Aquí puedes guardar los datos usando un servicio
-      // this.catalogoService.guardarCatalogo(formData).subscribe(...);
       this.goBack();
     } else {
-      // Maneja la lógica para mostrar errores o mensajes al usuario
     }
   }
 

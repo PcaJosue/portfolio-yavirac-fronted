@@ -1,5 +1,6 @@
 .catalogo-valor-container {
-  padding: 50px;
+  padding: 100px 100px 100px 100px;
+  height: 100vw;
 }
 
 .valor-header {
@@ -10,6 +11,10 @@
   width: 100%; 
 }
 
+.button-accions {
+  gap: 10px;
+  display: flex;
+}
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -29,11 +34,10 @@
 
 .valor-table {
   overflow-x: auto;
+  width: 100%;
+  
 }
 
-.valor-table table {
-  width: 100%;
-}
 
 @media (max-width: 768px) {
   .list-buttons a {

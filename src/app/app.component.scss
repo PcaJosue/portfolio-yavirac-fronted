@@ -1,20 +1,37 @@
-.main-header mat-toolbar {
-  background: #2196F3;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100vw;
-}
+
 
 .list-buttons{
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 5rem;
   justify-content: center;
   align-items: center;
 }
 
 .example-sidenav {
-  padding: 20px;
+  padding: 50px 0px 0px 0px;
+  background-color: rgb(215, 215, 215);
+  width: 250px;
+  border-radius: 0%;
+}
+
+.example-sidenav-content {
+  padding: 50px 50px 0px 50px;
+
+}
+
+.decorador mat-Toolbar{
+  background-color: rgb(215, 215, 215);
+  padding: 50px 50px 100px 15px;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: #0166d2;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #0166d296;
 }
