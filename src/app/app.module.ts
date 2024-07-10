@@ -17,13 +17,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CatalogosFormComponent } from './componentes/catalogos-form/catalogos-form.component';
 import { ConfirmacionComponent } from './componentes/confirmacion/confirmacion.component'; 
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
     AppComponent,
     CatalogosComponent,
     CatalogosFormComponent,
-    ConfirmacionComponent
+    ConfirmacionComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCardModule,
     MatIconModule,
     ReactiveFormsModule,
-    MatDialogModule 
+    MatDialogModule,
+    BrowserModule,
+    MatSelectModule
+    
   ],
   
   providers: [

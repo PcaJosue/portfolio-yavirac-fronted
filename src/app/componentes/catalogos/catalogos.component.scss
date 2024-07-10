@@ -1,59 +1,76 @@
+.catalogo-valor-container {
+  padding: 100px 100px 100px 100px;
+  height: 100vw;
+}
 
-  .mat-card {
+.valor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%; 
+}
+
+.button-accions {
+  gap: 10px;
+  display: flex;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.h {
+  width:500px;
+}
+
+.valor-header mat-form-field {
+  width: 70%;
+}
+
+.valor-table {
+  overflow-x: auto;
+  width: 100%;
+  
+}
+
+
+@media (max-width: 768px) {
+  .list-buttons a {
+    font-size: 14px;
+  }
+
+  .valor-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .valor-header mat-form-field {
     width: 100%;
-    max-width: 3000px; /* Ancho máximo de la tarjeta */
-    height: 100%; /* Ocupa toda la altura disponible */
-    margin: 20px;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .valor-header button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .list-buttons a {
+    font-size: 12px;
+  }
+
+  .main-header mat-toolbar {
     flex-direction: column;
   }
-  
-  .mat-card-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+
+  .main-header mat-toolbar span,
+  .main-header mat-toolbar button {
+    margin-bottom: 10px;
   }
-  
-  .mat-form-field {
-    width: 100%;
-    max-width: 400px; /* Ancho máximo del campo de búsqueda */
-    margin-bottom: 20px;
-  }
-  
-  table {
-    width: 100%;
-    height: 100%;
-    border-collapse: collapse;
-  }
-  
-  th.mat-header-cell,
-  td.mat-cell {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .mat-header-row {
-    background-color: #f0f0f0;
-  }
-  
-  .mat-row {
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  .mat-row:hover {
-    background-color: #f5f5f5;
-  }
-  
-  button.mat-icon-button {
-    margin-left: 8px;
-    color: #666;
-  }
-  
-  .mat-paginator {
-    margin-top: 20px;
-    justify-content: center;
-  }
-  
+}
