@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { CatalogoValorComponent } from './componentes/catalogo-valor/catalogo-valor.component';
+import { CatalogosComponent } from './componentes/catalogos/catalogos.component';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -17,38 +17,52 @@ import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableModule} from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 
-import { CatalogoValorFormComponent } from './componentes/catalogo-valor-form/catalogo-valor-form.component';
-import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule } from '@angular/forms';
+import { CatalogosFormComponent } from './componentes/catalogos-form/catalogos-form.component';
+import { ConfirmacionComponent } from './componentes/confirmacion/confirmacion.component'; 
+import { MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { CatalogoValorComponent } from './componentes/catalogo-valor/catalogo-valor.component';
+import { CatalogoValorFormComponent } from './componentes/catalogo-valor-form/catalogo-valor-form.component';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    CatalogosComponent,
+    CatalogosFormComponent,
+    ConfirmacionComponent,
     CatalogoValorComponent,
     CatalogoValorFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    CommonModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    BrowserModule,
+    MatSelectModule,
     MatButtonModule,
     MatSidenavModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatTableModule,
-    FormsModule,
-    MatSelectModule,
-    CommonModule,
-    ReactiveFormsModule
+    MatToolbarModule
   ],
+  
   providers: [
     provideAnimationsAsync(),
     provideAnimationsAsync('noop')
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
+export class ConfirmacionModule {}
