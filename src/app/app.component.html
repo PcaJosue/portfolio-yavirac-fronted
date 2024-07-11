@@ -1,1 +1,38 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <div class="list-buttons">
+        <ul>
+          <li><a routerLink="child-a">Estudiantes</a></li>
+          <li><a routerLink="child-a">Catalogo</a></li>
+          <li><a routerLink="child-a">Catalogo Valor</a></li>
+        </ul>
+      </div>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <div class="decorador">
+        <mat-toolbar>
+          <div class="bloque-1">
+            <span>My Application</span>
+          </div>
+          <div class="bloque-2">
+            <button type="button" mat-button (click)="drawer.toggle()">
+              Toggle sidenav
+            </button>
+          </div>
+        </mat-toolbar>
+      </div>
+    </div>
+
+    <div class="main-body">
+      <router-outlet></router-outlet>  
+
+    </div>
+  
+  </mat-drawer-container>
+
+
+  
+
+  
+ 

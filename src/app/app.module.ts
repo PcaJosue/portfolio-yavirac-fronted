@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CatalogosComponent } from './componentes/catalogos/catalogos.component';
+
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -11,10 +12,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-
-import { MatSortModule } from '@angular/material/sort';
-import { CommonModule } from '@angular/common';
-
 
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableModule} from '@angular/material/table';
@@ -25,6 +22,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CatalogosFormComponent } from './componentes/catalogos-form/catalogos-form.component';
 import { ConfirmacionComponent } from './componentes/confirmacion/confirmacion.component'; 
 import { MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { CatalogoValorComponent } from './componentes/catalogo-valor/catalogo-valor.component';
+import { CatalogoValorFormComponent } from './componentes/catalogo-valor-form/catalogo-valor-form.component';
+import { MatSortModule } from '@angular/material/sort';
+
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     CatalogosComponent,
     CatalogosFormComponent,
     ConfirmacionComponent,
+    CatalogoValorComponent,
+    CatalogoValorFormComponent
   ],
   imports: [
     BrowserModule,
@@ -56,8 +60,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   
   providers: [
     provideAnimationsAsync(),
-    provideAnimationsAsync('noop'),
-  
+    provideAnimationsAsync('noop')
   ],
   bootstrap: [AppComponent]
 })
