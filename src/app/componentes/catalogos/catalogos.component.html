@@ -6,7 +6,7 @@
         <div class="h">
         <mat-form-field appearance="outline">
           <mat-label>Search</mat-label>
-          <input (input)="filterCatalogos()"  [(ngModel)]="searchInput" id="searchInput" matInput placeholder="Search.....">
+          <input (input)="loadElementsByQuery()"  [(ngModel)]="searchQuery" id="searchQuery" matInput placeholder="Search.....">
         </mat-form-field>
         </div>
         <div class="d">

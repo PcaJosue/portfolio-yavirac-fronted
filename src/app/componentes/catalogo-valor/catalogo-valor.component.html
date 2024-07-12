@@ -6,7 +6,7 @@
         <div class="h">
         <mat-form-field appearance="outline">
           <mat-label>Search</mat-label>
-          <input (input)="filterCatalogoValor()"  [(ngModel)]="searchInput" id="searchInput" matInput placeholder="Search.....">
+          <input (input)="loadElementsByQuery()"  [(ngModel)]="searchQuery" id="searchInput" matInput placeholder="Search.....">
         </mat-form-field>
         </div>
         <div class="d">
@@ -41,7 +41,7 @@
 
             <ng-container matColumnDef="catalogo">
               <th mat-header-cell *matHeaderCellDef> Catalogo </th>
-              <td mat-cell *matCellDef="let element"> {{element.catalogo.name}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.catalogo.nombre}} </td>
             </ng-container>
 
             <ng-container matColumnDef="action">
@@ -49,7 +49,7 @@
                 <td mat-cell *matCellDef="let element"> 
                   <div class="button-accions">
                     <button mat-mini-fab color="primary" class="material-symbols-outlined" (click)= "editCatalogoValor(element)">Edit</button>
-                    <button mat-mini-fab color="primary" class="material-symbols-outlined" >Delete</button>
+                    <button mat-mini-fab color="primary" class="material-symbols-outlined" (click)= "deleteCatalogos(element)">Delete</button>
                   </div>
                 </td>
             </ng-container>
