@@ -6,6 +6,7 @@
   gap: 5rem;
   justify-content: center;
   align-items: center;
+  padding-top: 15px;
 }
 
 .example-sidenav {
@@ -13,6 +14,8 @@
   background-color: rgb(215, 215, 215);
   width: 250px;
   border-radius: 0%;
+
+  
 }
 
 .example-sidenav-content {
@@ -22,7 +25,7 @@
 
 .decorador mat-Toolbar{
   background-color: rgb(215, 215, 215);
-  padding: 50px 50px 100px 15px;
+  padding: 30px 50px 55px 50px;
   display: block;
 }
 
@@ -34,4 +37,17 @@ a {
 
 a:hover {
   color: #0166d296;
+}
+
+.link{
+padding: 10px;
+border: 1px solid #0166d2;
+border-radius: 10px;
+margin-top: 1rem;
+}
+
+.imagen{
+  width: 120px;
+  height: 120px;
+  margin-inline-start: 64px;
 }

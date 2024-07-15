@@ -12,7 +12,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./catalogo-valor.component.scss'],
 })
 export class CatalogoValorComponent implements AfterViewInit {
-  searchQuery: string = ''; 
+  searchQuery: string = '';
+   
 
   displayedColumns: string[] = ['id', 'valor', 'alias', 'descripcion', 'catalogo', 'action'];
   dataSource = new MatTableDataSource<PeriodicElement>();
@@ -61,7 +62,7 @@ export class CatalogoValorComponent implements AfterViewInit {
     console.log (valores.id)
     const dialogRef = this.dialog.open(ConfirmacionComponent, {
       width: '400px',
-      data: { message: `¿Estás seguro que quieres eliminar ${valores.valor}?`, id: valores.id  }
+      data: { message: `¿Está seguro que quiere eliminar ${valores.valor}?`, id: valores.id  }
     });
 
 

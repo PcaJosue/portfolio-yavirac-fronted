@@ -67,7 +67,7 @@ export class CatalogosComponent implements AfterViewInit {
     console.log (valores.id)
     const dialogRef = this.dialog.open(ConfirmacionComponent, {
       width: '400px',
-      data: { message: `¿Estás seguro que quieres eliminar ${valores.nombre}?`, id: valores.id  }
+      data: { message: `¿Está seguro que quiere eliminar ${valores.nombre}?`, id: valores.id  }
     });
 
 

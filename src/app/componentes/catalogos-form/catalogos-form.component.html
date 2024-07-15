@@ -1,7 +1,7 @@
 <div class="body">
 
     <form [formGroup]="catalogoForm" (ngSubmit)="guardar()">
-      <h2>{{ mode === 'edit' ? 'Editar' : 'Crear' }} {{ id }}</h2>
+      <h2>{{ mode === 'edit' ? 'Editar Catálogos' : 'Crear Catálogos' }} </h2>
     
       <div class="crear-editar">
         <mat-form-field appearance="outline">
@@ -21,8 +21,8 @@
       </div>
     
       <div class="botones">
-        <button mat-stroked-button type="button" (click)="goBack()">Cancelar</button>
-        <button mat-flat-button type="submit" >{{ mode === 'edit' ? 'Guardar cambios' : 'Crear' }}</button>
+        <button mat-flat-button text="" type="button" (click)="goBack()">Cancelar</button>
+        <button mat-stroke-button type="submit" >{{ mode === 'edit' ? 'Guardar cambios' : 'Crear' }}</button>
       </div>
     </form>
   
