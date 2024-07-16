@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from '../../environments/environment.development';
 
 export interface PeriodicElement {
   id: number;
@@ -29,11 +30,13 @@ export interface update {
   catalogoId: number;
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class PeriodicElementService {
-  private apiUrl = 'http://localhost:3000'; // URL base de tu API
+  
+  private apiUrl = environment.link; 
 
   constructor(private http: HttpClient) {}
 
@@ -140,7 +143,8 @@ export class PeriodicElementService {
     );
   }
 
-//crud catalogo
+
+  //CRUD CATALOGO
 
 getCatalogo(): Observable<Catalogo[]> {
     const url = `${this.apiUrl}/catalogos`;
