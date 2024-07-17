@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Catalogo, PeriodicElement, PeriodicElementService } from '../service.service';
-import { ConfirmacionComponent } from '../confirmacion/confirmacion.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmacionComponent } from '../confirmacion/confirmacion.component';
+import { CatalogoValor } from '../../Interfaces/catalogosInterfaces';
+import { CatalogosService } from '../catalogos.service';
 
 @Component({
   selector: 'app-catalogo',
@@ -13,25 +14,24 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CatalogoValorComponent implements AfterViewInit {
   searchQuery: string = '';
-   
-
   displayedColumns: string[] = ['id', 'valor', 'alias', 'descripcion', 'catalogo', 'action'];
-  dataSource = new MatTableDataSource<PeriodicElement>();
+  dataSource = new MatTableDataSource<CatalogoValor>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  constructor(private router: Router, private elementService: CatalogosService, public dialog: MatDialog) {}
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.loadElements();
   }
 
-  constructor(private router: Router, private elementService: PeriodicElementService,public dialog: MatDialog) {}
-
   goToCatalogoValorForm() {
     this.router.navigate(['/catalogo-valor-form']);
   }
 
-  editCatalogoValor(valores: PeriodicElement) {
-    this.router.navigate(['/edit-catalogo-valor', valores.id]); //editar
+  editCatalogoValor(valores: CatalogoValor) {
+    this.router.navigate(['/edit-catalogo-valor', valores.id]); 
   }
 
   crearCatalogoValorForm() {
@@ -58,21 +58,16 @@ export class CatalogoValorComponent implements AfterViewInit {
     });
   }
 
-  deleteCatalogos(valores: PeriodicElement): void {
-    console.log (valores.id)
+  deleteCatalogos(valores: CatalogoValor): void {
     const dialogRef = this.dialog.open(ConfirmacionComponent, {
       width: '400px',
-      data: { message: `¿Está seguro que quiere eliminar ${valores.valor}?`, id: valores.id  }
+      data: { message: `¿Está seguro que quiere eliminar ${valores.valor}?`, id: valores.id }
     });
-
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.elementService.deleteElement(valores.id).subscribe(() => {
-          this.router.navigate(['/catalogo-valor']);
-        });
-        this.elementService.searchElements(this.searchQuery).subscribe((elements) => {
-          this.dataSource.data = elements;
+          this.loadElements(); 
         });
       }
     });

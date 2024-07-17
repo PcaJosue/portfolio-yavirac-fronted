@@ -26,10 +26,7 @@ export class AppComponent implements OnInit {
       this.title = 'Catálogo';
     } else if (currentRoute.includes('catalogo-valor')) {
       this.title = 'Catálogo Valor';
-    } else if (currentRoute.includes('child-a')) {
-      this.title = 'Estudiantes';
-    } else {
-    }
+    } 
   }
 
   toggleMenu(): void {

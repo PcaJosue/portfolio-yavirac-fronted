@@ -3,44 +3,18 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment.development';
-
-export interface PeriodicElement {
-  id: number;
-  valor: string;
-  alias: string;
-  descripcion: string;
-  catalogo: {
-    id: number;
-    nombre: string;
-    descripcion: string;
-  };
-}
-
-export interface Catalogo {
-  id: number;
-  descripcion: string;
-  nombre: string;
-}
-
-export interface update {
-  id: number;
-  valor: string;
-  alias: string;
-  descripcion: string;
-  catalogoId: number;
-}
-
+import { Catalogo, CatalogoValor, update } from '../Interfaces/catalogosInterfaces';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PeriodicElementService {
+export class CatalogosService {
   
   private apiUrl = environment.link; 
 
   constructor(private http: HttpClient) {}
 
-  getElements(): Observable<PeriodicElement[]> {
+  getElements(): Observable<CatalogoValor[]> {
     const url = `${this.apiUrl}/catalogo-valor`;
     return this.http.get<any[]>(url).pipe(
       map(data => data.map(item => ({
@@ -89,7 +63,7 @@ export class PeriodicElementService {
     );
   }
 
-  deleteElement(id: number): Observable<PeriodicElement> {
+  deleteElement(id: number): Observable<CatalogoValor> {
     const url = `${this.apiUrl}/catalogo-valor/${id}`;
     return this.http.delete<any>(url).pipe(
       map(data => ({
@@ -107,7 +81,7 @@ export class PeriodicElementService {
     );
   }
 
-  getElementById(id: number): Observable<PeriodicElement> {
+  getElementById(id: number): Observable<CatalogoValor> {
     const url = `${this.apiUrl}/catalogo-valor/${id}`;
     return this.http.get<any>(url).pipe(
       map(data => ({
@@ -125,7 +99,7 @@ export class PeriodicElementService {
     );
   }
 
-  searchElements(query: string): Observable<PeriodicElement[]> {
+  searchElements(query: string): Observable<CatalogoValor[]> {
     const url = `${this.apiUrl}/catalogo-valor/search/by?query=${query}`;
     return this.http.get<any[]>(url).pipe(
       map(data => data.map(item => ({

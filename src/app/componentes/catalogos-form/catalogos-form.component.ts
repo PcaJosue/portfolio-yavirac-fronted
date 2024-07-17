@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PeriodicElementService } from '../service.service';
+import { CatalogosService } from '../catalogos.service';
 
 @Component({
   selector: 'app-catalogos-form',
@@ -18,7 +18,7 @@ export class CatalogosFormComponent implements OnInit{
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private periodicElementService: PeriodicElementService
+    private catalogosService: CatalogosService
 
   ){
     
@@ -41,7 +41,7 @@ export class CatalogosFormComponent implements OnInit{
 
 
   loadElementForEdit(id: number): void {
-    this.periodicElementService.getCatalogoById(id).subscribe(element => {
+    this.catalogosService.getCatalogoById(id).subscribe(element => {
       this.catalogoForm.patchValue({
         id: element.id,
         nombre: element.nombre,
@@ -59,11 +59,11 @@ export class CatalogosFormComponent implements OnInit{
       };
 
       if (this.mode === 'create') {
-        this.periodicElementService.createCatalogo(newElement).subscribe(() => {
+        this.catalogosService.createCatalogo(newElement).subscribe(() => {
           this.goBack();
         });
       } else if (this.mode === 'edit') {
-        this.periodicElementService.updateCatalogo(this.id, newElement).subscribe(() => {
+        this.catalogosService.updateCatalogo(this.id, newElement).subscribe(() => {
           console.log (newElement);
           this.goBack();
         });

@@ -4,8 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmacionComponent } from '../confirmacion/confirmacion.component';
-import { Catalogo, PeriodicElement, PeriodicElementService } from '../service.service';
-
+import { Catalogo, CatalogoValor } from '../../Interfaces/catalogosInterfaces';
+import { CatalogosService } from '../catalogos.service';
 
 @Component({
   selector: 'app-catalogos',
@@ -14,36 +14,31 @@ import { Catalogo, PeriodicElement, PeriodicElementService } from '../service.se
 })
 export class CatalogosComponent implements AfterViewInit {
   searchQuery: string = ''; 
-
   displayedColumns: string[] = ['id', 'nombre', 'descripcion', 'action'];
   dataSource = new MatTableDataSource<Catalogo>();
 
-
-  
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  
+  constructor(private router: Router, private elementService: CatalogosService, public dialog: MatDialog) {}
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.loadElements();
-
   }
 
-  constructor(private router: Router, private elementService: PeriodicElementService,
-              public dialog: MatDialog) {}
-
-
-    goToCatalogoValorForm() {
+  goToCatalogoValorForm() {
     this.router.navigate(['/catalogo-form']);
   }
 
-  editCatalogos (valores: PeriodicElement ) {
-    this.router.navigate(['/editar-catalogo/', valores.id]); //editar
+  editCatalogos (valores: CatalogoValor ) {
+    this.router.navigate(['/editar-catalogo/', valores.id]); 
   }
 
   crearCatalogosForm() {
     this.router.navigate(['/crear-catalogo']);
   }
+
   loadElements() {
-   
     if (this.searchQuery && this.searchQuery.length > 0) {
       this.loadElementsByQuery();
     } else {
@@ -64,23 +59,17 @@ export class CatalogosComponent implements AfterViewInit {
   }
 
   deleteCatalogos(valores: Catalogo): void {
-    console.log (valores.id)
     const dialogRef = this.dialog.open(ConfirmacionComponent, {
       width: '400px',
-      data: { message: `¿Está seguro que quiere eliminar ${valores.nombre}?`, id: valores.id  }
+      data: { message: `¿Está seguro que quiere eliminar ${valores.nombre}?`, id: valores.id }
     });
-
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.elementService.deleteCatalogo(valores.id).subscribe(() => {
-          this.router.navigate(['/catalogo-valor']);
-        });
-        this.elementService.searchCatalogo(this.searchQuery).subscribe((elements) => {
-          this.dataSource.data = elements;
+          this.loadElements(); 
         });
       }
     });
   }
-
 }

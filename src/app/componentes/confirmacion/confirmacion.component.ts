@@ -1,7 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { PeriodicElementService } from '../service.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirmacion',
@@ -11,40 +9,19 @@ import { Router } from '@angular/router';
 export class ConfirmacionComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ConfirmacionData,
-    private elementService: PeriodicElementService,
-    private dialogRef: MatDialogRef<ConfirmacionComponent>,
-    private router: Router,
-
+    private dialogRef: MatDialogRef<ConfirmacionComponent>
   ) {}
 
-  eliminarCatalogoYRealizarOtraAccion() {
-    this.eliminarCatalogo();
-    this.eliminarCatalogoValor();
-  }
-  eliminarCatalogo(): void {
-    this.elementService.deleteCatalogo(this.data.id).subscribe({
-      next: () => {
-      this.dialogRef.close(true);
-      }
-    });
-  }
-  goBack() {
-    this.router.navigate(['catalogos']);
+  confirmar() {
+    this.dialogRef.close(true);
   }
 
-  eliminarCatalogoValor(): void {
-    this.elementService.deleteElement(this.data.id).subscribe({
-      next: () => {
-      this.dialogRef.close(true);
-      }
-    });
+  cancelar() {
+    this.dialogRef.close(false);
   }
-
-
 }
 
 export interface ConfirmacionData {
   message: string;
   id: number;
-  
 }

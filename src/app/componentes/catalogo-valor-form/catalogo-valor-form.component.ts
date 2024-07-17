@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Catalogo, PeriodicElementService } from '../service.service';
+import { Catalogo } from '../../Interfaces/catalogosInterfaces';
+import { CatalogosService } from '../catalogos.service';
 
 @Component({
   selector: 'app-catalogo-valor-form',
@@ -18,7 +19,7 @@ export class CatalogoValorFormComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private periodicElementService: PeriodicElementService
+    private catalogosService: CatalogosService
   ) {
     this.catalogoForm = this.fb.group({
       id: [{ value: '', disabled: true }],
@@ -41,14 +42,14 @@ export class CatalogoValorFormComponent implements OnInit {
   }
 
   getCatalogos(): void {
-    this.periodicElementService.getCatalogo().subscribe(catalogos => {
+    this.catalogosService.getCatalogo().subscribe(catalogos => {
       this.catalogos = catalogos;
       console.log(catalogos);
     });
   }
 
   loadElementForEdit(id: number): void {
-    this.periodicElementService.getElementById(id).subscribe(element => {
+    this.catalogosService.getElementById(id).subscribe(element => {
       this.catalogoForm.patchValue({
         id: element.id,
         valor: element.valor,
@@ -70,11 +71,11 @@ export class CatalogoValorFormComponent implements OnInit {
       };
 
       if (this.mode === 'create') {
-        this.periodicElementService.createElement(newElement).subscribe(() => {
+        this.catalogosService.createElement(newElement).subscribe(() => {
           this.goBack();
         });
       } else if (this.mode === 'edit') {
-        this.periodicElementService.updateElement(this.id, newElement).subscribe(() => {
+        this.catalogosService.updateElement(this.id, newElement).subscribe(() => {
           console.log (newElement);
           this.goBack();
         });
