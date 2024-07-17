@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('CatalogosComponent', () => {
   let component: CatalogosComponent;
@@ -20,10 +22,14 @@ describe('CatalogosComponent', () => {
         AppRoutingModule,
         MatPaginatorModule,
         FormsModule,
-        MatTableModule
+        MatTableModule,
       ],
       declarations: [CatalogosComponent],
-      providers:[provideAnimationsAsync('noop'),]
+      providers: [
+        provideAnimationsAsync('noop'),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CatalogosComponent);

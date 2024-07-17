@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('CatalogosFormComponent', () => {
   let component: CatalogosFormComponent;
@@ -20,7 +22,11 @@ describe('CatalogosFormComponent', () => {
         ReactiveFormsModule,
       ],
       declarations: [CatalogosFormComponent],
-      providers: [provideAnimationsAsync('noop')]
+      providers: [
+        provideAnimationsAsync('noop'),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CatalogosFormComponent);
