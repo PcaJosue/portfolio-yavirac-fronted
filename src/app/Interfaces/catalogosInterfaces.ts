@@ -16,7 +16,7 @@ export interface CatalogoValor {
     nombre: string;
   }
   
-  export interface update {
+  export interface updateOrCreateValorCatalogo {
     id: number;
     valor: string;
     alias: string;

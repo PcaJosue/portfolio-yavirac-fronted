@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment.development';
-import { Catalogo, CatalogoValor, update } from '../Interfaces/catalogosInterfaces';
+import { Catalogo, CatalogoValor, updateOrCreateValorCatalogo } from '../Interfaces/catalogosInterfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -32,33 +32,18 @@ export class CatalogosService {
     );
   }
 
-  createElement(element: any): Observable<update> {
+  createElement(element: any): Observable<updateOrCreateValorCatalogo> {
     const url = `${this.apiUrl}/catalogo-valor`;
     console.log(element);
     return this.http.post<any>(url, element).pipe(
-      map(data => ({
-        id: data.id,
-        valor: data.valor,
-        alias: data.alias,
-        descripcion: data.descripcion,
-        catalogoId: data.catalogoid,
-         
-      })),
       catchError(this.handleError)
     );
   }
 
-  updateElement(id: number, element: any): Observable<update> {
+  updateElement(id: number, element: any): Observable<updateOrCreateValorCatalogo> {
     const url = `${this.apiUrl}/catalogo-valor/${id}`;
     console.log(element);
     return this.http.put<any>(url, element).pipe(
-      map(data => ({
-        id: data.id,
-        valor: data.valor,
-        alias: data.alias,
-        descripcion: data.descripcion,
-        catalogoId: data.id,
-      })),
       catchError(this.handleError),
     );
   }
@@ -66,17 +51,6 @@ export class CatalogosService {
   deleteElement(id: number): Observable<CatalogoValor> {
     const url = `${this.apiUrl}/catalogo-valor/${id}`;
     return this.http.delete<any>(url).pipe(
-      map(data => ({
-        id: data.id,
-        valor: data.valor,
-        alias: data.alias,
-        descripcion: data.descripcion,
-        catalogo: {
-          id: data.__catalogo__?.id || 0,
-          nombre: data.__catalogo__?.nombre || '',
-          descripcion: data.__catalogo__?.descripcion || ''
-        }
-      })),
       catchError(this.handleError)
     );
   }
@@ -123,11 +97,6 @@ export class CatalogosService {
 getCatalogo(): Observable<Catalogo[]> {
     const url = `${this.apiUrl}/catalogos`;
     return this.http.get<any[]>(url).pipe(
-      map(data => data.map(item => ({
-        id: item.id,
-        nombre: item.nombre,
-        descripcion: item.descripcion
-      }))),
       catchError(this.handleError)
     );
   }
@@ -135,11 +104,6 @@ getCatalogo(): Observable<Catalogo[]> {
   searchCatalogo(query: string): Observable<Catalogo[]> {
     const url = `${this.apiUrl}/catalogos/search/by?query=${query}`;
     return this.http.get<any[]>(url).pipe(
-      map(data => data.map(item => ({
-        id: item.id,
-        nombre: item.nombre,
-        descripcion: item.descripcion
-      }))),
       catchError(this.handleError)
     );
   }
@@ -148,11 +112,6 @@ getCatalogo(): Observable<Catalogo[]> {
     const url = `${this.apiUrl}/catalogos`;
     console.log(element);
     return this.http.post<any>(url, element).pipe(
-      map(data => ({
-        id: data.id,
-        nombre: data.nombre,
-        descripcion: data.descripcion
-      })),
       catchError(this.handleError)
     );
   }
@@ -161,11 +120,6 @@ getCatalogo(): Observable<Catalogo[]> {
     const url = `${this.apiUrl}/catalogos/${id}`;
     console.log(element);
     return this.http.put<any>(url, element).pipe(
-      map(data => ({
-        id: data.id,
-        nombre: data.nombre,
-        descripcion: data.descripcion
-      })),
       catchError(this.handleError)
     );
   }
@@ -173,11 +127,6 @@ getCatalogo(): Observable<Catalogo[]> {
   deleteCatalogo(id: number): Observable<Catalogo> {
     const url = `${this.apiUrl}/catalogos/${id}`;
     return this.http.delete<any>(url).pipe(
-      map(data => ({
-        id: data.id,
-        nombre: data.nombre,
-        descripcion: data.descripcion
-      })),
       catchError(this.handleError)
     );
   }
@@ -185,11 +134,6 @@ getCatalogo(): Observable<Catalogo[]> {
   getCatalogoById(id: number): Observable<Catalogo> {
     const url = `${this.apiUrl}/catalogos/${id}`;
     return this.http.get<any>(url).pipe(
-      map(data => ({
-        id: data.id,
-        nombre: data.nombre,
-        descripcion: data.descripcion
-      })),
       catchError(this.handleError)
     );
   }
