@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { AppRoutingModule } from '../../app-routing.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('CatalogoValorComponent', () => {
   let component: CatalogoValorComponent;
@@ -32,12 +34,15 @@ describe('CatalogoValorComponent', () => {
         FormsModule,
         MatSelectModule,
         FormsModule,
-        AppRoutingModule
+        AppRoutingModule,
       ],
       declarations: [CatalogoValorComponent],
-      providers: [provideAnimationsAsync()]
-    })
-    .compileComponents();
+      providers: [
+        provideAnimationsAsync(),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CatalogoValorComponent);
     component = fixture.componentInstance;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { valores } from '../catalogos/catalogos.component';
+import { CatalogosService } from '../catalogos.service';
 
 @Component({
   selector: 'app-catalogos-form',
@@ -11,43 +11,69 @@ import { valores } from '../catalogos/catalogos.component';
 export class CatalogosFormComponent implements OnInit{
   catalogoForm: FormGroup;
   mode: 'edit' | 'create';
-  id: string;
+  id: number;
+  catalogos: any[] = []; 
   
   constructor( 
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private catalogosService: CatalogosService
+
   ){
     
     this.catalogoForm = this.fb.group({
-      id: [''], 
+      id: [{ value: '', disabled: true }],
       nombre: ['', Validators.required],
       descripcion: ['']
     });
   }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
+    this.id = +this.route.snapshot.paramMap.get('id');
     this.mode = this.id ? 'edit' : 'create';
 
+    
     if (this.mode === 'edit') {
-      const catalogoValor=valores.filter(valor=>valor.id===+this.id)[0]
-      console.log(catalogoValor)
-      this.catalogoForm.patchValue({...catalogoValor})
+      this.loadElementForEdit(this.id);
     }
+  }
+
+
+  loadElementForEdit(id: number): void {
+    this.catalogosService.getCatalogoById(id).subscribe(element => {
+      this.catalogoForm.patchValue({
+        id: element.id,
+        nombre: element.nombre,
+        descripcion: element.descripcion,
+      });
+    });
   }
 
   guardar(): void {
     if (this.catalogoForm.valid) {
-      const formData = this.catalogoForm.value;
-      console.log(this.catalogoForm)
-      this.catalogoForm.patchValue({...this.catalogoForm})
-      this.goBack();
-    } 
+      const formData = this.catalogoForm.getRawValue();
+      const newElement = {
+        nombre: formData.nombre,
+        descripcion: formData.descripcion,
+      };
+
+      if (this.mode === 'create') {
+        this.catalogosService.createCatalogo(newElement).subscribe(() => {
+          this.goBack();
+        });
+      } else if (this.mode === 'edit') {
+        this.catalogosService.updateCatalogo(this.id, newElement).subscribe(() => {
+          console.log (newElement);
+          this.goBack();
+        });
+      }
+    } else {
+      // Formulario inválido
+    }
   }
 
-  goBack(){
-    this.router.navigate(['catalogos'])
+  goBack() {
+    this.router.navigate(['catalogos']);
   }
-
 }

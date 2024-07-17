@@ -1,42 +1,39 @@
 <div class="body">
-
   <form [formGroup]="catalogoForm" (ngSubmit)="guardar()">
-    <h2>{{ mode === 'edit' ? 'Editar' : 'Crear catalogo valor' }} {{ id }}</h2>
-  
+    <h2>{{ mode === 'edit' ? 'Editar Catálogo Valor' : 'Crear Cátalogo Valor' }} </h2>
+
     <div class="crear-editar">
       <mat-form-field appearance="outline">
         <mat-label>ID</mat-label>
         <input matInput placeholder="ID" formControlName="id" >
       </mat-form-field>
-  
+
       <mat-form-field appearance="outline">
         <mat-label>Valor</mat-label>
         <input matInput placeholder="Valor" formControlName="valor">
       </mat-form-field>
-  
+
       <mat-form-field appearance="outline">
         <mat-label>Alias</mat-label>
         <input matInput placeholder="Alias" formControlName="alias">
       </mat-form-field>
-  
+
       <mat-form-field appearance="outline">
-        <mat-label>Catalogo</mat-label>
+        <mat-label>Catálogo</mat-label>
         <mat-select formControlName="catalogo">
-            <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo">{{catalogo.name}}</mat-option>
+          <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.id">{{ catalogo.nombre }}</mat-option>
         </mat-select>
       </mat-form-field>
-    
+
       <mat-form-field appearance="outline">
         <mat-label>Descripción</mat-label>
         <input matInput placeholder="Descripción" formControlName="descripcion">
       </mat-form-field>
     </div>
-  
+
     <div class="botones">
-      <button mat-stroked-button type="button" (click)="goBack()">Cancelar</button>
-      <button mat-flat-button type="submit">{{ mode === 'edit' ? 'Guardar cambios' : 'Crear' }}</button>
+      <button mat-flat-button type="button" (click)="goBack()">Cancelar</button>
+      <button mat-stroke-button type="submit">{{ mode === 'edit' ? 'Guardar cambios' : 'Crear' }}</button>
     </div>
   </form>
-
 </div>
-  

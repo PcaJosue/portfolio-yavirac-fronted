@@ -1,38 +1,27 @@
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-      <div class="list-buttons">
-        <ul>
-          <li><a routerLink="child-a">Estudiantes</a></li>
-          <li><a routerLink="child-a">Catalogo</a></li>
-          <li><a routerLink="child-a">Catalogo Valor</a></li>
-        </ul>
-      </div>
-    </mat-drawer>
   
-    <div class="example-sidenav-content">
-      <div class="decorador">
-        <mat-toolbar>
-          <div class="bloque-1">
-            <span>My Application</span>
-          </div>
-          <div class="bloque-2">
-            <button type="button" mat-button (click)="drawer.toggle()">
-              Toggle sidenav
-            </button>
-          </div>
-        </mat-toolbar>
-      </div>
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened="isMenuVisible">
+    <div class= "imagen">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsPohyZi18ViFV5iZIygpnLRKI3EJr835qo1s2FJw6ek8Bz-3KxcThFu1JhefbFv-bVcm0T6lDG6d6I-oXsl2Bjatjw4QxXAwElSbwNbedrEHHMxoPX7wcNVd_BjlRvj_b3eTSEjKQpLM/s280/Slide3_Pic2_636410071712783811.png" width="140px" height="140px" >
     </div>
-
-    <div class="main-body">
-      <router-outlet></router-outlet>  
-
+    <div class="list-buttons">
+      <ul>
+        <li class="link"><a routerLink="estudiantes" >Estudiantes</a></li>
+        <li class="link"><a routerLink="catalogos" >Catálogo</a></li>
+        <li class="link"><a routerLink="catalogo-valor" >Catálogo Valor</a></li>
+      </ul>
     </div>
-  
-  </mat-drawer-container>
+  </mat-drawer>
 
+  <div class="example-sidenav-content">
+    <div class="decorador">
+      <mat-toolbar>
+          <span>{{ title }}</span>
+      </mat-toolbar>
+    </div>
+  </div>
 
-  
-
-  
- 
+  <div class="main-body">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

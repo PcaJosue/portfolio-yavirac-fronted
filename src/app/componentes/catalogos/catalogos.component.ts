@@ -4,7 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmacionComponent } from '../confirmacion/confirmacion.component';
-
+import { Catalogo, CatalogoValor } from '../../Interfaces/catalogosInterfaces';
+import { CatalogosService } from '../catalogos.service';
 
 @Component({
   selector: 'app-catalogos',
@@ -12,70 +13,63 @@ import { ConfirmacionComponent } from '../confirmacion/confirmacion.component';
   styleUrls: ['./catalogos.component.scss']
 })
 export class CatalogosComponent implements AfterViewInit {
+  searchQuery: string = ''; 
   displayedColumns: string[] = ['id', 'nombre', 'descripcion', 'action'];
-  dataSource = new MatTableDataSource<Valor>(valores);
-
-  searchInput: string = '';
+  dataSource = new MatTableDataSource<Catalogo>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  
+  constructor(private router: Router, private elementService: CatalogosService, public dialog: MatDialog) {}
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.loadElements();
   }
 
-  constructor(private router: Router,
-              public dialog: MatDialog) {}
+  goToCatalogoValorForm() {
+    this.router.navigate(['/catalogo-form']);
+  }
 
-
-    filterCatalogos() {
-      if (!this.searchInput || this.searchInput.length === 0) {
-        this.dataSource = new MatTableDataSource<Valor>(valores);
-        console.log('Filtering catalogos...');
-    }
-
-    const filterCatalogoValor = valores.filter(valor =>
-      valor.id.toString().toLowerCase().includes(this.searchInput.toLowerCase())
-    );
-    this.dataSource = new MatTableDataSource<Valor>(filterCatalogoValor);
+  editCatalogos (valores: CatalogoValor ) {
+    this.router.navigate(['/editar-catalogo/', valores.id]); 
   }
 
   crearCatalogosForm() {
     this.router.navigate(['/crear-catalogo']);
   }
 
-  editCatalogos(valores: Valor) {
-    console.log(valores);
-    this.router.navigate(['/editar-catalogo', valores.id]);
+  loadElements() {
+    if (this.searchQuery && this.searchQuery.length > 0) {
+      this.loadElementsByQuery();
+    } else {
+      this.loadAllElements();
+    }
   }
 
-  deleteCatalogos(valores: Valor) {
+  loadAllElements() {
+    this.elementService.getCatalogo().subscribe((elements) => {
+      this.dataSource.data = elements;
+    });
+  }
+
+  loadElementsByQuery() {
+    this.elementService.searchCatalogo(this.searchQuery).subscribe((elements) => {
+      this.dataSource.data = elements;
+    });
+  }
+
+  deleteCatalogos(valores: Catalogo): void {
     const dialogRef = this.dialog.open(ConfirmacionComponent, {
       width: '400px',
-      data: { message: `¿Estás seguro que quieres eliminar ${valores.nombre}?` }
+      data: { message: `¿Está seguro que quiere eliminar ${valores.nombre}?`, id: valores.id }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Lógica para eliminar el valor aquí
-        console.log(`Eliminando ${valores.nombre}`);
+        this.elementService.deleteCatalogo(valores.id).subscribe(() => {
+          this.loadElements(); 
+        });
       }
     });
   }
-
-  crearCatalogoValorForm() {
-    this.router.navigate(['/crear-catalogo']);
-  }
-
 }
-
-export interface Valor {
-  nombre: string;
-  id: number;
-  descripcion: string;
-
-}
-
-export const valores: Valor[] = [
-  { id: 1, nombre: 'Semestre', descripcion: 'Niveles de semestre' },
-  { id: 2, nombre: 'Tipo de Sangre', descripcion: 'Tipos de sangre'},
-  { id: 3, nombre: 'Curso', descripcion: 'Paralelo y nivel al que pertenece'},
-];

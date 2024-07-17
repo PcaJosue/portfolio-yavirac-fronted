@@ -5,12 +5,12 @@
       <div class="valor-header">
         <div class="h">
         <mat-form-field appearance="outline">
-          <mat-label>Search</mat-label>
-          <input (input)="filterCatalogos()"  [(ngModel)]="searchInput" id="searchInput" matInput placeholder="Search.....">
+          <mat-label>Buscar</mat-label>
+          <input (input)="loadElementsByQuery()"  [(ngModel)]="searchQuery" id="searchQuery" matInput placeholder="Buscando.....">
         </mat-form-field>
         </div>
         <div class="d">
-        <button mat-flat-button (click)="crearCatalogosForm()">Create</button>
+        <button mat-flat-button (click)="crearCatalogosForm()">Crear</button>
         </div>
       </div>
       <div class="valor-table">
@@ -29,12 +29,12 @@
         
             <!-- Symbol Column -->
             <ng-container matColumnDef="descripcion">
-              <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+              <th mat-header-cell *matHeaderCellDef> Descripción </th>
               <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
             </ng-container>
 
             <ng-container matColumnDef="action">
-              <th mat-header-cell *matHeaderCellDef> Accions </th>
+              <th mat-header-cell *matHeaderCellDef>Acciones </th>
                 <td mat-cell *matCellDef="let valor"> 
                   <div class="button-accions">
                     <button mat-mini-fab color="primary"  (click)= "editCatalogos(valor)">
@@ -54,7 +54,7 @@
         
           <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                          showFirstLastButtons
-                         aria-label="Select page of periodic elements">
+                         aria-label="Select page of Catalogos">
           </mat-paginator>
         </div>
         

@@ -8,6 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatInputModule } from '@angular/material/input';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('CatalogoValorFormComponent', () => {
   let component: CatalogoValorFormComponent;
@@ -24,7 +26,11 @@ describe('CatalogoValorFormComponent', () => {
         ReactiveFormsModule,
       ],
       declarations: [CatalogoValorFormComponent],
-      providers: [provideAnimationsAsync()]
+      providers: [
+        provideAnimationsAsync(),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CatalogoValorFormComponent);

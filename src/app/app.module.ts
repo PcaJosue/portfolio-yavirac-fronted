@@ -26,6 +26,8 @@ import { CommonModule } from '@angular/common';
 import { CatalogoValorComponent } from './componentes/catalogo-valor/catalogo-valor.component';
 import { CatalogoValorFormComponent } from './componentes/catalogo-valor-form/catalogo-valor-form.component';
 import { MatSortModule } from '@angular/material/sort';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+
 
 
 
@@ -60,7 +62,8 @@ import { MatSortModule } from '@angular/material/sort';
   
   providers: [
     provideAnimationsAsync(),
-    provideAnimationsAsync('noop')
+    provideAnimationsAsync('noop'),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })
