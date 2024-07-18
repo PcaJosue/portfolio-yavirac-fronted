@@ -27,6 +27,8 @@ import { CatalogoValorComponent } from './componentes/catalogo-valor/catalogo-va
 import { CatalogoValorFormComponent } from './componentes/catalogo-valor-form/catalogo-valor-form.component';
 import { MatSortModule } from '@angular/material/sort';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { DatosPersonalesComponent } from './componentes/datos-personales/datos-personales.component';
+import { DatosPersonalesFormComponent } from './componentes/datos-personales-form/datos-personales-form.component';
 
 
 
@@ -38,7 +40,9 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     CatalogosFormComponent,
     ConfirmacionComponent,
     CatalogoValorComponent,
-    CatalogoValorFormComponent
+    CatalogoValorFormComponent,
+    DatosPersonalesComponent,
+    DatosPersonalesFormComponent
   ],
   imports: [
     BrowserModule,

@@ -26,6 +26,8 @@ export class AppComponent implements OnInit {
       this.title = 'Catálogo';
     } else if (currentRoute.includes('catalogo-valor')) {
       this.title = 'Catálogo Valor';
+    } else if (currentRoute.includes('datos-personales')) {
+      this.title = 'Datos Personales';
     } 
   }
 
