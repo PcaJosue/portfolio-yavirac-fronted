@@ -1,0 +1,81 @@
+<div class="datos-personales-form-container">
+    <form [formGroup]="datosForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombres y Apellidos</mat-label>
+        <input matInput formControlName="nombre" placeholder="Nombres y Apellidos">
+        <mat-error *ngIf="datosForm.get('nombre').hasError('required')">Este campo es requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Cédula</mat-label>
+        <input matInput formControlName="cedula" placeholder="Cédula">
+        <mat-error *ngIf="datosForm.get('cedula').hasError('required')">Este campo es requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Carrera</mat-label>
+        <mat-select formControlName="carrera">
+          <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.nombre">{{ catalogo.nombre }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="datosForm.get('carrera').hasError('required')">Este campo es requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Nivel</mat-label>
+        <mat-select formControlName="nivel">
+          <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.nombre">{{ catalogo.nombre }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="datosForm.get('nivel').hasError('required')">Este campo es requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Email">
+        <mat-error *ngIf="datosForm.get('email').hasError('required')">Este campo es requerido</mat-error>
+        <mat-error *ngIf="datosForm.get('email').hasError('email')">Email no válido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="telefono" placeholder="Teléfono">
+        <mat-error *ngIf="datosForm.get('telefono').hasError('required')">Este campo es requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Estado Civil</mat-label>
+        <mat-select formControlName="estadoCivil">
+          <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.nombre">{{ catalogo.nombre }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="datosForm.get('estadoCivil').hasError('required')">Este campo es requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de Sangre</mat-label>
+        <mat-select formControlName="tipoSangre">
+          <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.nombre">{{ catalogo.nombre }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="datosForm.get('tipoSangre').hasError('required')">Este campo es requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Domicilio</mat-label>
+        <input matInput formControlName="domicilio" placeholder="Domicilio">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Contacto de Emergencia</mat-label>
+        <input matInput formControlName="contactoEmergencia" placeholder="Contacto de Emergencia">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Teléfono de Emergencia</mat-label>
+        <input matInput formControlName="telefonoEmergencia" placeholder="Teléfono de Emergencia">
+      </mat-form-field>
+  
+      <div class="form-buttons">
+        <button mat-raised-button color="primary" type="submit" [disabled]="datosForm.invalid">Guardar</button>
+        <button mat-raised-button color="warn" type="button" (click)="goBack()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+  
