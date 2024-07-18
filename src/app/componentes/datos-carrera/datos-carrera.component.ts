@@ -1,21 +1,21 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { CatalogosService } from '../catalogos.service';
 import { Router } from '@angular/router';
+import { CatalogosService } from '../catalogos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CatalogoValor } from '../../Interfaces/catalogosInterfaces';
 import { ConfirmacionComponent } from '../confirmacion/confirmacion.component';
 
 @Component({
-  selector: 'app-datos-personales',
-  templateUrl: './datos-personales.component.html',
-  styleUrl: './datos-personales.component.scss'
+  selector: 'app-datos-carrera',
+  templateUrl: './datos-carrera.component.html',
+  styleUrl: './datos-carrera.component.scss'
 })
-export class DatosPersonalesComponent {
+export class DatosCarreraComponent {
   searchQuery: string = '';
   displayedColumns: string[] = ['ID','Carrera', 'NombreCordinador', 'ApellidoCordinador', 'NombreDocente', 'ApellidoDocente', 'PeriodoAcademico', 'action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<DatosCarrera>(ELEMENT_DATA);
 
   
 
@@ -25,16 +25,16 @@ export class DatosPersonalesComponent {
     this.dataSource.paginator = this.paginator;
   }
 
-  cgoToCatalogoValorForm() {
-    this.router.navigate(['/datos-personales']);
+  cgoToCarreraForm() {
+    this.router.navigate(['/datos-carrera']);
   }
 
-  editCatalogoValor(valores: CatalogoValor) {
-    this.router.navigate(['/edit-datos-personales', valores.id]); 
+  editCarrera(valores: CatalogoValor) {
+    this.router.navigate(['/edit-datos-carrera', valores.id]); 
   }
 
-  crearCatalogoValorForm() {
-    this.router.navigate(['/crear-datos-personales']);
+  crearCarreraForm() {
+    this.router.navigate(['/crear-datos-carrera']);
   }
 
   loadElements() {
@@ -57,7 +57,7 @@ export class DatosPersonalesComponent {
     });
   }
 
-  deleteCatalogos(valores: CatalogoValor): void {
+  deleteCarrera(valores: CatalogoValor): void {
     const dialogRef = this.dialog.open(ConfirmacionComponent, {
       width: '400px',
       data: { message: `¿Está seguro que quiere eliminar ${valores.valor}?`, id: valores.id }
@@ -72,7 +72,7 @@ export class DatosPersonalesComponent {
     });
   }
 }
-export interface PeriodicElement {
+export interface DatosCarrera {
   id:number;
   Carrera: string;
   NombreCordinador: string;
@@ -82,7 +82,7 @@ export interface PeriodicElement {
   PeriodoAcademico:string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
+const ELEMENT_DATA: DatosCarrera[] = [
   {id: 1,NombreCordinador: 'nombre', Carrera: 'Hydrogen', ApellidoCordinador: 1.0079, NombreDocente: 'H', ApellidoDocente:'as', PeriodoAcademico:'asd'},
   {id: 2,NombreCordinador: 'nombre', Carrera: 'Helium', ApellidoCordinador: 4.0026, NombreDocente: 'He', ApellidoDocente:'as', PeriodoAcademico:'asd'},
   {id: 3,NombreCordinador: 'nombre', Carrera: 'Lithium', ApellidoCordinador: 6.941, NombreDocente: 'Li', ApellidoDocente:'as', PeriodoAcademico:'asd'},
@@ -104,3 +104,4 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {id: 19,NombreCordinador: 'nombre', Carrera: 'Potassium', ApellidoCordinador: 39.0983, NombreDocente: 'K', ApellidoDocente:'as', PeriodoAcademico:'asd'},
   {id: 20,NombreCordinador: 'nombre', Carrera: 'Calcium', ApellidoCordinador: 40.078, NombreDocente: 'Ca', ApellidoDocente:'as', PeriodoAcademico:'asd'},
 ];
+

@@ -10,7 +10,7 @@
         </mat-form-field>
         </div>
         <div class="d">
-        <button mat-flat-button (click)="crearCatalogoValorForm()">Crear</button>
+        <button mat-flat-button (click)="crearCarreraForm()">Crear</button>
         </div>
       </div>
 
@@ -60,10 +60,10 @@
             <th mat-header-cell *matHeaderCellDef>Acciones </th>
               <td mat-cell *matCellDef="let valor"> 
                 <div class="button-accions">
-                  <button mat-mini-fab color="primary"  (click)= "editCatalogoValor(valor)">
+                  <button mat-mini-fab color="primary"  (click)= "editCarrera(valor)">
                     <mat-icon>edit</mat-icon>
                   </button>
-                  <button mat-mini-fab class="mat-warn"  (click)= "deleteCatalogos(valor)">
+                  <button mat-mini-fab class="mat-warn"  (click)= "deleteCarrera(valor)">
                     <mat-icon>delete</mat-icon>
                   </button>
                 </div>

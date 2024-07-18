@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PeriodicElement } from '../datos-personales/datos-personales.component';
-import { CatalogosService } from '../catalogos.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CatalogosService } from '../catalogos.service';
+import { DatosCarrera } from '../datos-carrera/datos-carrera.component';
 
 @Component({
-  selector: 'app-datos-personales-form',
-  templateUrl: './datos-personales-form.component.html',
-  styleUrl: './datos-personales-form.component.scss'
+  selector: 'app-datos-carrera-form',
+  templateUrl: './datos-carrera-form.component.html',
+  styleUrl: './datos-carrera-form.component.scss'
 })
-export class DatosPersonalesFormComponent {
-  datosPersonalesForm: FormGroup;
+export class DatosCarreraFormComponent {
+
+  datosCarreraForm: FormGroup;
   mode: 'edit' | 'create';
   id: number;
-  catalogos: PeriodicElement[];
+  catalogos: DatosCarrera[];
 
   constructor(
     private fb: FormBuilder,
@@ -21,7 +22,7 @@ export class DatosPersonalesFormComponent {
     private route: ActivatedRoute,
     private catalogosService: CatalogosService
   ) {
-    this.datosPersonalesForm = this.fb.group({
+    this.datosCarreraForm = this.fb.group({
       id: [{ value: '', disabled: true }],
       Carrera: ['', Validators.required],
       NombreCordinador: [''],
@@ -36,14 +37,14 @@ export class DatosPersonalesFormComponent {
     this.id = +this.route.snapshot.paramMap.get('id');
     this.mode = this.id ? 'edit' : 'create';
 
-    this.getCatalogos();
+    this.getCarrera();
     
     if (this.mode === 'edit') {
       this.loadElementForEdit(this.id);
     }
   }
 
-  getCatalogos(): void {
+  getCarrera(): void {
     this.catalogosService.getCatalogo().subscribe(catalogos => {
       //this.catalogos = catalogos;
       console.log(catalogos);
@@ -52,7 +53,7 @@ export class DatosPersonalesFormComponent {
 
   loadElementForEdit(id: number): void {
     this.catalogosService.getElementById(id).subscribe(element => {
-      this.datosPersonalesForm.patchValue({
+      this.datosCarreraForm.patchValue({
         id: element.id,
         valor: element.valor,
         alias: element.alias,
@@ -63,8 +64,8 @@ export class DatosPersonalesFormComponent {
   }
 
   guardar(): void {
-    if (this.datosPersonalesForm.valid) {
-      const formData = this.datosPersonalesForm.getRawValue();
+    if (this.datosCarreraForm.valid) {
+      const formData = this.datosCarreraForm.getRawValue();
       const newElement = {
         valor: formData.valor,
         alias: formData.alias,
@@ -86,7 +87,6 @@ export class DatosPersonalesFormComponent {
   }
 
   goBack() {
-    this.router.navigate(['datos-personales']);
+    this.router.navigate(['datos-carrera']);
   }
 }
-
