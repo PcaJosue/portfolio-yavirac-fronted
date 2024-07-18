@@ -4,6 +4,8 @@ import { CatalogosComponent } from './componentes/catalogos/catalogos.component'
 import { CatalogosFormComponent } from './componentes/catalogos-form/catalogos-form.component';
 import { CatalogoValorComponent } from './componentes/catalogo-valor/catalogo-valor.component';
 import { CatalogoValorFormComponent } from './componentes/catalogo-valor-form/catalogo-valor-form.component';
+import { DatosPersonalesComponent } from './componentes/datos-personales/datos-personales.component';
+import { DatosPersonalesFormComponent } from './componentes/datos-personales-form/datos-personales-form.component';
 
 const routes: Routes = [
   {path:'catalogos', component:CatalogosComponent},
@@ -12,6 +14,9 @@ const routes: Routes = [
   {path:"catalogo-valor",component:CatalogoValorComponent},
   {path:"catalogo-valor-form",component:CatalogoValorFormComponent},
   {path:"edit-catalogo-valor/:id",component:CatalogoValorFormComponent},
+  {path:"datos-personales",component:DatosPersonalesComponent},
+  {path:"crear-datos-personales",component:DatosPersonalesFormComponent},
+  {path:"edit-datos-personales/:id",component:DatosPersonalesFormComponent},
   { path: '',   redirectTo: '/catalogos', pathMatch: 'full' }
   
 ];

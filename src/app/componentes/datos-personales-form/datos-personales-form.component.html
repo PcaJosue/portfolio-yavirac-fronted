@@ -1,0 +1,51 @@
+<div class="body">
+    <form [formGroup]="datosPersonalesForm" (ngSubmit)="guardar()">
+      <h2>{{ mode === 'edit' ? 'Editar Datos Personales' : 'Crear Datos Personales' }} </h2>
+  
+      <div class="crear-editar">
+        <mat-form-field appearance="outline">
+          <mat-label>ID</mat-label>
+          <input matInput placeholder="ID" formControlName="id" >
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre Cordinador</mat-label>
+          <input matInput placeholder="NombreCordinador" formControlName="nombreCordinador">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido Cordinador</mat-label>
+          <input matInput placeholder="ApellidoCordinador" formControlName="apellidoCordinador">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre Docente</mat-label>
+          <input matInput placeholder="NombreDocente" formControlName="nombreDocente">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido Docente</mat-label>
+          <input matInput placeholder="ApellidoDocente" formControlName="apellidoDocente">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Carrera</mat-label>
+          <mat-select formControlName="catalogo">
+            <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.id">{{ catalogo.Carrera }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Periodo Academico</mat-label>
+          <mat-select formControlName="catalogo">
+            <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.id">{{ catalogo.PeriodoAcademico}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+      <div class="botones">
+        <button mat-flat-button type="button" (click)="goBack()">Cancelar</button>
+        <button mat-stroke-button type="submit">{{ mode === 'edit' ? 'Guardar cambios' : 'Crear' }}</button>
+      </div>
+    
+  </div>
+  
