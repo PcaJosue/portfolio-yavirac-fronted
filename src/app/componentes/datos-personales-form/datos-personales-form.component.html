@@ -73,7 +73,7 @@
     </mat-form-field>
 
     <div class="form-buttons">
-      <button mat-raised-button color="primary" type="submit" [disabled]="datosForm.invalid">Guardar</button>
+      <button mat-raised-button color="primary" type="submit" (click)="goBack()">Guardar</button>
       <button mat-raised-button color="warn" type="button" (click)="goBack()">Cancelar</button>
     </div>
   </form>

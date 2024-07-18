@@ -14,7 +14,7 @@ import { ConfirmacionComponent } from '../confirmacion/confirmacion.component';
 })
 export class DatosPersonalesComponent {
   searchQuery: string = '';
-  displayedColumns: string[] = ['id', 'nombres', 'cedula', 'carrera', 'nivel', 'email', 'telefono', 'estadoCivil', 'tipoSangre', 'domicilio', 'contactoEmergencia', 'telefonoEmergencia', 'action'];
+  displayedColumns: string[] = ['id', 'nombres','apellidos', 'cedula', 'carrera', 'nivel', 'email', 'telefono', 'estadoCivil', 'tipoSangre', 'domicilio', 'contactoEmergencia', 'telefonoEmergencia', 'action'];
 
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
