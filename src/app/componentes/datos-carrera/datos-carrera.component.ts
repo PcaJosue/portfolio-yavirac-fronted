@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CatalogosService } from '../catalogos.service';
 import { MatDialog } from '@angular/material/dialog';
-import { CatalogoValor } from '../../Interfaces/catalogosInterfaces';
+import { DatosCarreras } from '../../Interfaces/datosInterfaces';
 import { ConfirmacionComponent } from '../confirmacion/confirmacion.component';
 
 @Component({
@@ -29,7 +29,7 @@ export class DatosCarreraComponent {
     this.router.navigate(['/datos-carrera']);
   }
 
-  editCarrera(valores: CatalogoValor) {
+  editCarrera(valores: DatosCarreras) {
     this.router.navigate(['/edit-datos-carrera', valores.id]); 
   }
 
@@ -57,10 +57,11 @@ export class DatosCarreraComponent {
     });
   }
 
-  deleteCarrera(valores: CatalogoValor): void {
+  deleteCarrera(valores: DatosCarreras): void {
+    console.log('valores: ', valores)
     const dialogRef = this.dialog.open(ConfirmacionComponent, {
       width: '400px',
-      data: { message: `¿Está seguro que quiere eliminar ${valores.valor}?`, id: valores.id }
+      data: { message: `¿Está seguro que desea eliminar ${valores.Carrera}?`, id: valores.id }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -83,8 +84,8 @@ export interface DatosCarrera {
 }
 
 const ELEMENT_DATA: DatosCarrera[] = [
-  {id: 1,NombreCordinador: 'nombre', Carrera: 'Hydrogen', ApellidoCordinador: 1.0079, NombreDocente: 'H', ApellidoDocente:'as', PeriodoAcademico:'asd'},
-  {id: 2,NombreCordinador: 'nombre', Carrera: 'Helium', ApellidoCordinador: 4.0026, NombreDocente: 'He', ApellidoDocente:'as', PeriodoAcademico:'asd'},
+  {id: 1,NombreCordinador: 'nombre', Carrera: 'carrera', ApellidoCordinador: 1.0079, NombreDocente: 'H', ApellidoDocente:'as', PeriodoAcademico:'asd'},
+  {id: 2,NombreCordinador: 'nombre', Carrera: 'carrera', ApellidoCordinador: 4.0026, NombreDocente: 'He', ApellidoDocente:'as', PeriodoAcademico:'asd'},
   {id: 3,NombreCordinador: 'nombre', Carrera: 'Lithium', ApellidoCordinador: 6.941, NombreDocente: 'Li', ApellidoDocente:'as', PeriodoAcademico:'asd'},
   {id: 4,NombreCordinador: 'nombre', Carrera: 'Beryllium', ApellidoCordinador: 9.0122, NombreDocente: 'Be', ApellidoDocente:'as', PeriodoAcademico:'asd'},
   {id: 5,NombreCordinador: 'nombre', Carrera: 'Boron', ApellidoCordinador: 10.811, NombreDocente: 'B', ApellidoDocente:'as', PeriodoAcademico:'asd'},
