@@ -26,15 +26,15 @@ export class DatosPersonalesComponent {
     this.dataSource.paginator = this.paginator;
   }
 
-  cgoToCatalogoValorForm() {
+  cgoToDatosForm() {
     this.router.navigate(['/datos-personales']);
   }
 
-  editCatalogoValor(valores: DatoPersonal) {
+  editDatos(valores: DatoPersonal) {
     this.router.navigate(['/edit-datos-personales', valores.id]); 
   }
 
-  crearCatalogoValorForm() {
+  crearDatosForm() {
     this.router.navigate(['/crear-datos-personales']);
   }
 
@@ -58,7 +58,7 @@ export class DatosPersonalesComponent {
     });
   }
 
-  deleteCatalogos(valores: DatoPersonal): void {
+  deleteDatos(valores: DatoPersonal): void {
     const dialogRef = this.dialog.open(ConfirmacionComponent, {
       width: '400px',
       data: { message: `¿Está seguro que quiere eliminar ${valores.nombres}?`, id: valores.id }

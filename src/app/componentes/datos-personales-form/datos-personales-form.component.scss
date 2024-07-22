@@ -1,51 +1,58 @@
-.datos-personales-form-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
+
+.body {
+  height: 100%;
+}
 
 
-  
-  
-  form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  
-  .mat-form-field {
-    width: 100%;
-  }
-  
-.form-buttons {
-    grid-column: span 2;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  button[mat-raised-button] {
-    min-width: 120px;
-  }
-  
-  button[mat-raised-button][color="primary"] {
-    background-color: #1976d2;
-    color: #fff;
-  }
-  
-  button[mat-raised-button][color="warn"] {
-    background-color: #d32f2f;
-    color: #fff;
-  }
-  
-  button[mat-raised-button][color="primary"]:hover {
-    background-color: #1565c0;
-  }
-  
-  button[mat-raised-button][color="warn"]:hover {
-    background-color: #c62828;
-  }
+h2 {
+  color: #333;
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: left;
+  padding: 100px 100px 10px 100px;
+}
 
+.crear-editar {
+  background-color: #fff;
+  padding: 10px 100px 100px 100px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  gap: 20px;
+}
+
+
+
+mat-form-field {
+  flex: 1;
+}
+
+button {
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  
+}
+
+.botones {
+  padding: 10px 100px 100px 100px;
+  text-align: right;
+}
+
+button:first-of-type {
+
+  max-width: 600px;
+  margin: 8px 8px 8px 0;
+  
+}
+
+button:last-of-type {
+  max-width: 600px;
+  margin: 8px 8px 8px 0;
+}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CatalogosService } from '../catalogos.service';
+import { DatosPersonales } from '../datos-personales/datos-personales.component';
 
 @Component({
   selector: 'app-datos-personales-form',
@@ -8,7 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./datos-personales-form.component.scss'],
 })
 export class DatosPersonalesFormComponent implements OnInit {
-  datosForm: FormGroup;
+  datosPersonalesForm: FormGroup;
+  mode: 'edit' | 'create';
+  id: number;
   catalogos = [
     { id: 1, especialidad: 'Desarrollo de Software' },
     { id: 2, especialidad: 'Arte Culinario' },
@@ -25,8 +29,11 @@ export class DatosPersonalesFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
+    private catalogosService: CatalogosService
   ) {
-    this.datosForm = this.fb.group({
+    this.datosPersonalesForm = this.fb.group({
+      id: [{ value: '', disabled: true}],
       nombre: ['', Validators.required],
       cedula: ['', Validators.required],
       carrera: ['', Validators.required],
@@ -41,16 +48,62 @@ export class DatosPersonalesFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.id = +this.route.snapshot.paramMap.get('id');
+    this.mode = this.id ? 'edit' : 'create';
 
-  onSubmit(): void {
-    if (this.datosForm.valid) {
-      console.log('Form data: ', this.datosForm.value);
-      // Aquí se manejarían los datos del formulario, por ejemplo, guardándolos en una base de datos
-    } else {
-      console.log('Formulario no válido');
+    this.getDatos();
+    
+    if (this.mode === 'edit') {
+      this.loadElementForEdit(this.id);
     }
   }
+
+  getDatos(): void {
+    this.catalogosService.getCatalogo().subscribe(catalogos => {
+      //this.catalogos = catalogos;
+      console.log(catalogos);
+    });
+  }
+
+
+  loadElementForEdit(id: number): void {
+    this.catalogosService.getElementById(id).subscribe(element => {
+      this.datosPersonalesForm.patchValue({
+        id: element.id,
+        valor: element.valor,
+        alias: element.alias,
+        catalogoId: element.catalogo.id,
+        descripcion: element.descripcion,
+      });
+    });
+  }
+
+  guardar(): void {
+    if (this.datosPersonalesForm.valid) {
+      const formData = this.datosPersonalesForm.getRawValue();
+      const newElement = {
+        valor: formData.valor,
+        alias: formData.alias,
+        descripcion: formData.descripcion,
+        catalogoId: formData.catalogo, 
+      };
+
+      if (this.mode === 'create') {
+        this.catalogosService.createElement(newElement).subscribe(() => {
+          this.goBack();
+        });
+      } else if (this.mode === 'edit') {
+        this.catalogosService.updateElement(this.id, newElement).subscribe(() => {
+          console.log (newElement);
+          this.goBack();
+        });
+      }
+    } 
+  }
+
+
+
   goBack() {
     this.router.navigate(['/datos-personales']);
   }
