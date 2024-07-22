@@ -10,16 +10,16 @@ import { Router } from '@angular/router';
 export class DatosPersonalesFormComponent implements OnInit {
   datosForm: FormGroup;
   catalogos = [
-    { id: 1, nombre: 'Carrera 1' },
-    { id: 2, nombre: 'Carrera 2' },
-    { id: 3, nombre: 'Carrera 3' },
-    { id: 4, nombre: 'Nivel 1' },
-    { id: 5, nombre: 'Nivel 2' },
-    { id: 6, nombre: 'Nivel 3' },
-    { id: 7, nombre: 'Soltero' },
-    { id: 8, nombre: 'Casado' },
-    { id: 9, nombre: 'A+' },
-    { id: 10, nombre: 'O-' }
+    { id: 1, especialidad: 'Desarrollo de Software' },
+    { id: 2, especialidad: 'Arte Culinario' },
+    { id: 3, especialidad: 'Turismo' },
+    { id: 4, nivel: 'Nivel 1' },
+    { id: 5, nivel: 'Nivel 2' },
+    { id: 6, nivel: 'Nivel 3' },
+    { id: 7, estado: 'Soltero' },
+    { id: 8, estado: 'Casado' },
+    { id: 9, sangre: 'A+' },
+    { id: 10, sangre: 'O-' }
   ];
 
   constructor(

@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CatalogosService } from '../catalogos.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { CatalogoValor } from '../../Interfaces/catalogosInterfaces';
+import { DatoPersonal } from '../../Interfaces/datospinterfaces';
 import { ConfirmacionComponent } from '../confirmacion/confirmacion.component';
 
 @Component({
@@ -14,9 +14,9 @@ import { ConfirmacionComponent } from '../confirmacion/confirmacion.component';
 })
 export class DatosPersonalesComponent {
   searchQuery: string = '';
-  displayedColumns: string[] = ['id', 'nombres','apellidos', 'cedula', 'carrera', 'nivel', 'email', 'telefono', 'estadoCivil', 'tipoSangre', 'domicilio', 'contactoEmergencia', 'telefonoEmergencia', 'action'];
+  displayedColumns: string[] = ['id', 'nombres', 'cedula', 'carrera', 'nivel', 'email', 'telefono', 'estadoCivil', 'tipoSangre', 'domicilio', 'contactoEmergencia', 'telefonoEmergencia', 'action'];
 
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<DatosPersonales>(ELEMENT_DATA);
 
   
 
@@ -30,7 +30,7 @@ export class DatosPersonalesComponent {
     this.router.navigate(['/datos-personales']);
   }
 
-  editCatalogoValor(valores: CatalogoValor) {
+  editCatalogoValor(valores: DatoPersonal) {
     this.router.navigate(['/edit-datos-personales', valores.id]); 
   }
 
@@ -58,10 +58,10 @@ export class DatosPersonalesComponent {
     });
   }
 
-  deleteCatalogos(valores: CatalogoValor): void {
+  deleteCatalogos(valores: DatoPersonal): void {
     const dialogRef = this.dialog.open(ConfirmacionComponent, {
       width: '400px',
-      data: { message: `¿Está seguro que quiere eliminar ${valores.valor}?`, id: valores.id }
+      data: { message: `¿Está seguro que quiere eliminar ${valores.nombres}?`, id: valores.id }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -73,9 +73,8 @@ export class DatosPersonalesComponent {
     });
   }
 }
-export interface PeriodicElement {
+export interface DatosPersonales {
   id: number,
-  apellidos: string,
   nombres: string,
   cedula: string,
   carrera: string,
@@ -89,13 +88,12 @@ export interface PeriodicElement {
   telefonoemer: number
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
+const ELEMENT_DATA: DatosPersonales[] = [
   {
     id: 1,
-    apellidos: 'Pérez',
-    nombres: 'Juan',
+    nombres: 'Juan Pérez',
     cedula: '1234567890',
-    carrera: 'Ingeniería',
+    carrera: 'Desarrollo de Software',
     nivel: 'Nivel 1',
     email: 'juan.perez@example.com',
     telefono: 987654321,
@@ -107,10 +105,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
   },
   {
     id: 2,
-    apellidos: 'Gómez',
-    nombres: 'Ana',
+    nombres: 'Ana Gómez',
     cedula: '0987654321',
-    carrera: 'Medicina',
+    carrera: 'Arte Culinario',
     nivel: 'Nivel 2',
     email: 'ana.gomez@example.com',
     telefono: 987654323,

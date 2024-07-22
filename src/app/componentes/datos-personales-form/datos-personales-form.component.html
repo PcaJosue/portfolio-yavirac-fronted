@@ -14,16 +14,17 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Carrera</mat-label>
-      <mat-select formControlName="carrera">
-        <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.nombre">{{ catalogo.nombre }}</mat-option>
+      <mat-select formControlName="carrera" class="limited-height-select">
+        <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.especialidad">{{ catalogo.especialidad }}</mat-option>
       </mat-select>
       <mat-error *ngIf="datosForm.get('carrera').hasError('required')">Este campo es requerido</mat-error>
     </mat-form-field>
+    
 
     <mat-form-field appearance="outline">
       <mat-label>Nivel</mat-label>
       <mat-select formControlName="nivel">
-        <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.nombre">{{ catalogo.nombre }}</mat-option>
+        <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.nivel">{{ catalogo.nivel }}</mat-option>
       </mat-select>
       <mat-error *ngIf="datosForm.get('nivel').hasError('required')">Este campo es requerido</mat-error>
     </mat-form-field>
@@ -44,7 +45,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Estado Civil</mat-label>
       <mat-select formControlName="estadoCivil">
-        <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.nombre">{{ catalogo.nombre }}</mat-option>
+        <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.estado">{{ catalogo.estado }}</mat-option>
       </mat-select>
       <mat-error *ngIf="datosForm.get('estadoCivil').hasError('required')">Este campo es requerido</mat-error>
     </mat-form-field>
@@ -52,7 +53,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Tipo de Sangre</mat-label>
       <mat-select formControlName="tipoSangre">
-        <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.nombre">{{ catalogo.nombre }}</mat-option>
+        <mat-option *ngFor="let catalogo of catalogos" [value]="catalogo.sangre">{{ catalogo.sangre }}</mat-option>
       </mat-select>
       <mat-error *ngIf="datosForm.get('tipoSangre').hasError('required')">Este campo es requerido</mat-error>
     </mat-form-field>
